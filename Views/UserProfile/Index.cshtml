@@ -1,0 +1,65 @@
+﻿@model IEnumerable<IKGAi.Models.UserProfile>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.profileId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.userId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.skills)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.experience)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.interests)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.education)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.profileId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.userId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.skills)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.experience)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.interests)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.education)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.profileId }) |
+                @Html.ActionLink("Details", "Details", new { id=item.profileId }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.profileId  })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
