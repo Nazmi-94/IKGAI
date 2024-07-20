@@ -10,27 +10,30 @@ namespace IKGAi.Controllers
     public class CareerController : Controller
     {
 
-        private DB db = new DB();
-
+        private DB _db;
+        public CareerController(DB db)
+        {
+            _db = db;
+        }
         // GET: CareerController
         public ActionResult Index()
         {
             List < Career > careers = new List<Career> ();
-            careers = db.Career.ToList ();
+            careers = _db.Career.ToList ();
             return View(careers);
         }
 
         // GET: CareerController/Details/5
         public ActionResult Details(int id)
         {
-            var careerDetails = db.Career.Include(x=> x.User).Where(x => x.Id == id).SingleOrDefault();
+            var careerDetails = _db.Career.Include(x=> x.User).Where(x => x.Id == id).SingleOrDefault();
             return View(careerDetails);
         }
 
         // GET: CareerController/Create
         public ActionResult Create()
         {
-            var users = db.User.ToList ();
+            var users = _db.User.ToList ();
             var users_sel_list = new SelectList(users, "Id", "name");
             ViewBag.users = users_sel_list;
             return View();
@@ -43,8 +46,8 @@ namespace IKGAi.Controllers
         {
             try
             {
-                db.Career.Add(newCareer);
-                db.SaveChanges();
+                _db.Career.Add(newCareer);
+                _db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
@@ -58,8 +61,8 @@ namespace IKGAi.Controllers
         // GET: CareerController/Edit/5
         public ActionResult Edit(int id)
         {
-            var career = db.Career.Find(id);
-            var users = db.User.ToList ();
+            var career = _db.Career.Find(id);
+            var users = _db.User.ToList ();
             var user_sel_list = new SelectList(users, "Id", "name");
             ViewBag.users = user_sel_list;
             return View(career);
@@ -72,13 +75,13 @@ namespace IKGAi.Controllers
         {
             try
             {
-                var existingCareer = db.Career.Find(updatedCareer.Id);
+                var existingCareer = _db.Career.Find(updatedCareer.Id);
                 if (existingCareer != null)
                 {
                     existingCareer.careerName = updatedCareer.careerName;
                     existingCareer.requirements = updatedCareer.requirements;
                     existingCareer.description = updatedCareer.description;
-                    db.SaveChanges();
+                    _db.SaveChanges();
                 }
                 else
                 {
@@ -95,7 +98,7 @@ namespace IKGAi.Controllers
         // GET: CareerController/Delete/5
         public ActionResult Delete(int id)
         {
-            var careerDelete = db.Career.Find(id);
+            var careerDelete = _db.Career.Find(id);
             return View();
         }
 
@@ -106,11 +109,11 @@ namespace IKGAi.Controllers
         {
             try
             {
-                var careerDelete = db.Career.Find(id);
+                var careerDelete = _db.Career.Find(id);
                 if(careerDelete != null)
                 {
-                    db.Career.Remove(careerDelete);
-                    db.SaveChanges();
+                    _db.Career.Remove(careerDelete);
+                    _db.SaveChanges();
 
                 }
                 return RedirectToAction(nameof(Index));

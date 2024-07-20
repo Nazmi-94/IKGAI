@@ -9,21 +9,24 @@ namespace IKGAi.Controllers
 {
     public class CommentController : Controller
     {
-        private DB db = new DB();
+        private static DB _db;
+        public CommentController(DB db)
+        {
+            _db = db;
+        }
 
-        
         // GET: CommentController
         public ActionResult Index()
         {
             List<Comment> comments = new List<Comment>();
-            comments = db.Comment.ToList();
+            comments = _db.Comment.ToList();
             return View(comments);
         }
 
         // GET: CommentController/Details/5
         public ActionResult Details(int id)
         {
-            var commentDetails = db.Comment.Include(x=> x.User).Where(x => x.Id == id).SingleOrDefault();
+            var commentDetails = _db.Comment.Include(x=> x.User).Where(x => x.Id == id).SingleOrDefault();
             //var commentDe = db.Comment.Find(id);
             return View(commentDetails);
         }
@@ -31,7 +34,7 @@ namespace IKGAi.Controllers
         // GET: CommentController/Create
         public ActionResult Create()
         {
-            var users = db.User.ToList();
+            var users = _db.User.ToList();
             var user_sel_list = new SelectList(users, "Id", "name");
             ViewBag.users = user_sel_list;
            
@@ -46,8 +49,8 @@ namespace IKGAi.Controllers
             try
             {
                 
-                db.Comment.Add(newComment);
-                db.SaveChanges();
+                _db.Comment.Add(newComment);
+                _db.SaveChanges();
 
                 return RedirectToAction(nameof(Index));
             }
@@ -60,8 +63,8 @@ namespace IKGAi.Controllers
         // GET: CommentController/Edit/5
         public ActionResult Edit(int id)
         {
-            var comment = db.Comment.Find(id);
-            var users = db.User.ToList();
+            var comment = _db.Comment.Find(id);
+            var users = _db.User.ToList();
             var user_sel_list = new SelectList(users, "Id", "name");
             ViewBag.users = user_sel_list;
             return View(comment);
@@ -74,13 +77,13 @@ namespace IKGAi.Controllers
         {
             try
             {
-                var existingComment = db.Comment.Find(updatedCommnet.Id);
+                var existingComment = _db.Comment.Find(updatedCommnet.Id);
                 if (existingComment != null)
                 {
                     existingComment.commentText = updatedCommnet.commentText;
                     existingComment.commentDate = updatedCommnet.commentDate;
                     existingComment.userId = updatedCommnet.userId;
-                    db.SaveChanges();
+                    _db.SaveChanges();
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -93,7 +96,7 @@ namespace IKGAi.Controllers
         // GET: CommentController/Delete/5
         public ActionResult Delete(int id)
         {
-            var comment = db.Comment.Find(id);
+            var comment = _db.Comment.Find(id);
 
             return View(comment);
         }
@@ -105,11 +108,11 @@ namespace IKGAi.Controllers
         {
             try
             {
-                var commetD = db.Comment.Find(id);
+                var commetD = _db.Comment.Find(id);
                 if (commetD != null)
                 {
-                    db.Comment.Remove(commetD);
-                    db.SaveChanges();
+                    _db.Comment.Remove(commetD);
+                    _db.SaveChanges();
                 }    
                 return RedirectToAction(nameof(Index));
             }

@@ -9,15 +9,18 @@ namespace IKGAi.Controllers
 {
     public class UserProfileController : Controller
     {
-        private DB db = new DB();
+        private DB _db;
+        public UserProfileController(DB db)
+        {
+            _db = db;
+        }
 
-        
 
         // GET: UserProfileController
         public ActionResult Index()
         {
             List<UserProfile> listProfiles = new List<UserProfile>();
-            listProfiles = db.Profiles.ToList();
+            listProfiles = _db.Profiles.ToList();
             return View(listProfiles);
         }
 
@@ -25,7 +28,7 @@ namespace IKGAi.Controllers
         public ActionResult Details(int id)
         {
 
-            var profile = db.Profiles.Find(id);
+            var profile = _db.Profiles.Find(id);
             return View(profile);
         }
 
@@ -42,8 +45,8 @@ namespace IKGAi.Controllers
         {
             try
             {
-                db.Profiles.Add(newProfile);
-                db.SaveChanges();
+                _db.Profiles.Add(newProfile);
+                _db.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -55,7 +58,7 @@ namespace IKGAi.Controllers
         // GET: UserProfileController/Edit/5
         public ActionResult Edit(int id)
         {
-            var profile = db.Profiles.Find(id);
+            var profile = _db.Profiles.Find(id);
             return View(profile);
 
         }
@@ -67,7 +70,7 @@ namespace IKGAi.Controllers
         {
             try
             {
-                var existingProfile = db.Profiles.Find(updatedProfile.profileId);
+                var existingProfile = _db.Profiles.Find(updatedProfile.profileId);
                 if (existingProfile != null)
                 {
                     existingProfile.experience = updatedProfile.experience;
@@ -86,7 +89,7 @@ namespace IKGAi.Controllers
         // GET: UserProfileController/Delete/5
         public ActionResult Delete(int id)
         {
-            var profile = db.Profiles.Find(id);
+            var profile = _db.Profiles.Find(id);
 
             return View(profile);
         }
@@ -98,11 +101,11 @@ namespace IKGAi.Controllers
         {
             try
             {
-                var profile = db.Profiles.Find(id);
+                var profile = _db.Profiles.Find(id);
                 if (profile != null)
                 {
-                    db.Profiles.Remove(profile);
-                    db.SaveChanges();
+                    _db.Profiles.Remove(profile);
+                    _db.SaveChanges();
                 }
                 return RedirectToAction(nameof(Index));
             }

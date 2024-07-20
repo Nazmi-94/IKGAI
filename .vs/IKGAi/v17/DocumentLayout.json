@@ -3,6 +3,38 @@
   "WorkspaceRootPath": "C:\\Users\\nazmi\\OneDrive\\Desktop\\A2-project\\nazmi\\Edumind-Ikgai\\IKGAI\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{282F9354-7548-4953-A65D-8F232F8C5DC8}|IKGAi.csproj|c:\\users\\nazmi\\onedrive\\desktop\\a2-project\\nazmi\\edumind-ikgai\\ikgai\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{282F9354-7548-4953-A65D-8F232F8C5DC8}|IKGAi.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{282F9354-7548-4953-A65D-8F232F8C5DC8}|IKGAi.csproj|c:\\users\\nazmi\\onedrive\\desktop\\a2-project\\nazmi\\edumind-ikgai\\ikgai\\controllers\\commentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{282F9354-7548-4953-A65D-8F232F8C5DC8}|IKGAi.csproj|solutionrelative:controllers\\commentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{282F9354-7548-4953-A65D-8F232F8C5DC8}|IKGAi.csproj|c:\\users\\nazmi\\onedrive\\desktop\\a2-project\\nazmi\\edumind-ikgai\\ikgai\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{282F9354-7548-4953-A65D-8F232F8C5DC8}|IKGAi.csproj|solutionrelative:controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{282F9354-7548-4953-A65D-8F232F8C5DC8}|IKGAi.csproj|c:\\users\\nazmi\\onedrive\\desktop\\a2-project\\nazmi\\edumind-ikgai\\ikgai\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{282F9354-7548-4953-A65D-8F232F8C5DC8}|IKGAi.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{282F9354-7548-4953-A65D-8F232F8C5DC8}|IKGAi.csproj|c:\\users\\nazmi\\onedrive\\desktop\\a2-project\\nazmi\\edumind-ikgai\\ikgai\\controllers\\careercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{282F9354-7548-4953-A65D-8F232F8C5DC8}|IKGAi.csproj|solutionrelative:controllers\\careercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{282F9354-7548-4953-A65D-8F232F8C5DC8}|IKGAi.csproj|c:\\users\\nazmi\\onedrive\\desktop\\a2-project\\nazmi\\edumind-ikgai\\ikgai\\controllers\\userprofilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{282F9354-7548-4953-A65D-8F232F8C5DC8}|IKGAi.csproj|solutionrelative:controllers\\userprofilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{282F9354-7548-4953-A65D-8F232F8C5DC8}|IKGAi.csproj|c:\\users\\nazmi\\onedrive\\desktop\\a2-project\\nazmi\\edumind-ikgai\\ikgai\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{282F9354-7548-4953-A65D-8F232F8C5DC8}|IKGAi.csproj|solutionrelative:controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{282F9354-7548-4953-A65D-8F232F8C5DC8}|IKGAi.csproj|c:\\users\\nazmi\\onedrive\\desktop\\a2-project\\nazmi\\edumind-ikgai\\ikgai\\models\\db.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{282F9354-7548-4953-A65D-8F232F8C5DC8}|IKGAi.csproj|solutionrelative:models\\db.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{282F9354-7548-4953-A65D-8F232F8C5DC8}|IKGAi.csproj|c:\\users\\nazmi\\onedrive\\desktop\\a2-project\\nazmi\\edumind-ikgai\\ikgai\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{282F9354-7548-4953-A65D-8F232F8C5DC8}|IKGAi.csproj|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
@@ -22,7 +54,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,7 +66,111 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CareerController.cs",
+              "DocumentMoniker": "C:\\Users\\nazmi\\OneDrive\\Desktop\\A2-project\\nazmi\\Edumind-Ikgai\\IKGAI\\Controllers\\CareerController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CareerController.cs",
+              "ToolTip": "C:\\Users\\nazmi\\OneDrive\\Desktop\\A2-project\\nazmi\\Edumind-Ikgai\\IKGAI\\Controllers\\CareerController.cs",
+              "RelativeToolTip": "Controllers\\CareerController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAGkAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-20T17:06:33.229Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "UserProfileController.cs",
+              "DocumentMoniker": "C:\\Users\\nazmi\\OneDrive\\Desktop\\A2-project\\nazmi\\Edumind-Ikgai\\IKGAI\\Controllers\\UserProfileController.cs",
+              "RelativeDocumentMoniker": "Controllers\\UserProfileController.cs",
+              "ToolTip": "C:\\Users\\nazmi\\OneDrive\\Desktop\\A2-project\\nazmi\\Edumind-Ikgai\\IKGAI\\Controllers\\UserProfileController.cs",
+              "RelativeToolTip": "Controllers\\UserProfileController.cs",
+              "ViewState": "AQIAACEAAAAAAAAAAAAuwGsAAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-20T17:05:37.962Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\nazmi\\OneDrive\\Desktop\\A2-project\\nazmi\\Edumind-Ikgai\\IKGAI\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\nazmi\\OneDrive\\Desktop\\A2-project\\nazmi\\Edumind-Ikgai\\IKGAI\\Controllers\\UserController.cs",
+              "RelativeToolTip": "Controllers\\UserController.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAABQAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-20T17:03:10.462Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\nazmi\\OneDrive\\Desktop\\A2-project\\nazmi\\Edumind-Ikgai\\IKGAI\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\nazmi\\OneDrive\\Desktop\\A2-project\\nazmi\\Edumind-Ikgai\\IKGAI\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Controllers\\HomeController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-20T17:03:11.455Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CommentController.cs",
+              "DocumentMoniker": "C:\\Users\\nazmi\\OneDrive\\Desktop\\A2-project\\nazmi\\Edumind-Ikgai\\IKGAI\\Controllers\\CommentController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CommentController.cs",
+              "ToolTip": "C:\\Users\\nazmi\\OneDrive\\Desktop\\A2-project\\nazmi\\Edumind-Ikgai\\IKGAI\\Controllers\\CommentController.cs",
+              "RelativeToolTip": "Controllers\\CommentController.cs",
+              "ViewState": "AQIAAGAAAAAAAAAAAAA5wH0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-20T17:01:31.232Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\nazmi\\OneDrive\\Desktop\\A2-project\\nazmi\\Edumind-Ikgai\\IKGAI\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\nazmi\\OneDrive\\Desktop\\A2-project\\nazmi\\Edumind-Ikgai\\IKGAI\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-20T16:56:28.266Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\nazmi\\OneDrive\\Desktop\\A2-project\\nazmi\\Edumind-Ikgai\\IKGAI\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\nazmi\\OneDrive\\Desktop\\A2-project\\nazmi\\Edumind-Ikgai\\IKGAI\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-07-20T16:55:22.319Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "DB.cs",
+              "DocumentMoniker": "C:\\Users\\nazmi\\OneDrive\\Desktop\\A2-project\\nazmi\\Edumind-Ikgai\\IKGAI\\Models\\DB.cs",
+              "RelativeDocumentMoniker": "Models\\DB.cs",
+              "ToolTip": "C:\\Users\\nazmi\\OneDrive\\Desktop\\A2-project\\nazmi\\Edumind-Ikgai\\IKGAI\\Models\\DB.cs",
+              "RelativeToolTip": "Models\\DB.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-20T16:55:10.597Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": ".gitignore",
               "DocumentMoniker": "C:\\Users\\nazmi\\OneDrive\\Desktop\\A2-project\\nazmi\\Edumind-Ikgai\\IKGAI\\.gitignore",
               "RelativeDocumentMoniker": ".gitignore",
@@ -47,7 +183,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 9,
               "Title": "Career.cs",
               "DocumentMoniker": "C:\\Users\\nazmi\\OneDrive\\Desktop\\A2-project\\nazmi\\Edumind-Ikgai\\IKGAI\\Models\\Career.cs",
               "RelativeDocumentMoniker": "Models\\Career.cs",
@@ -60,7 +196,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 10,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\Users\\nazmi\\OneDrive\\Desktop\\A2-project\\nazmi\\Edumind-Ikgai\\IKGAI\\Views\\UserProfile\\Create.cshtml",
               "RelativeDocumentMoniker": "Views\\UserProfile\\Create.cshtml",
