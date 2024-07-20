@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nazmi\\OneDrive\\Desktop\\A2-project\\nazmi\\new-project\\IKGAi\\IKGAi.csproj": {}
+    "C:\\Users\\nazmi\\OneDrive\\Desktop\\A2-project\\nazmi\\Edumind-Ikgai\\IKGAI\\IKGAi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nazmi\\OneDrive\\Desktop\\A2-project\\nazmi\\new-project\\IKGAi\\IKGAi.csproj": {
+    "C:\\Users\\nazmi\\OneDrive\\Desktop\\A2-project\\nazmi\\Edumind-Ikgai\\IKGAI\\IKGAi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nazmi\\OneDrive\\Desktop\\A2-project\\nazmi\\new-project\\IKGAi\\IKGAi.csproj",
+        "projectUniqueName": "C:\\Users\\nazmi\\OneDrive\\Desktop\\A2-project\\nazmi\\Edumind-Ikgai\\IKGAI\\IKGAi.csproj",
         "projectName": "IKGAi",
-        "projectPath": "C:\\Users\\nazmi\\OneDrive\\Desktop\\A2-project\\nazmi\\new-project\\IKGAi\\IKGAi.csproj",
+        "projectPath": "C:\\Users\\nazmi\\OneDrive\\Desktop\\A2-project\\nazmi\\Edumind-Ikgai\\IKGAI\\IKGAi.csproj",
         "packagesPath": "C:\\Users\\nazmi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nazmi\\OneDrive\\Desktop\\A2-project\\nazmi\\new-project\\IKGAi\\obj\\",
+        "outputPath": "C:\\Users\\nazmi\\OneDrive\\Desktop\\A2-project\\nazmi\\Edumind-Ikgai\\IKGAI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\nazmi\\AppData\\Roaming\\NuGet\\NuGet.Config",

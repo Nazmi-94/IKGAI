@@ -17,119 +17,119 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = IKGAi
 build_property.RootNamespace = IKGAi
-build_property.ProjectDir = C:\Users\nazmi\OneDrive\Desktop\A2-project\nazmi\new-project\IKGAi\
+build_property.ProjectDir = C:\Users\nazmi\OneDrive\Desktop\A2-project\nazmi\Edumind-Ikgai\IKGAI\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\nazmi\OneDrive\Desktop\A2-project\nazmi\new-project\IKGAi
+build_property.MSBuildProjectDirectory = C:\Users\nazmi\OneDrive\Desktop\A2-project\nazmi\Edumind-Ikgai\IKGAI
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/new-project/IKGAi/Views/Career/Create.cshtml]
+[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/Edumind-Ikgai/IKGAI/Views/Career/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FyZWVyXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/new-project/IKGAi/Views/Career/Delete.cshtml]
+[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/Edumind-Ikgai/IKGAI/Views/Career/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FyZWVyXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/new-project/IKGAi/Views/Career/Details.cshtml]
+[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/Edumind-Ikgai/IKGAI/Views/Career/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FyZWVyXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/new-project/IKGAi/Views/Career/Edit.cshtml]
+[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/Edumind-Ikgai/IKGAI/Views/Career/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FyZWVyXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/new-project/IKGAi/Views/Career/Index.cshtml]
+[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/Edumind-Ikgai/IKGAI/Views/Career/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FyZWVyXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/new-project/IKGAi/Views/Comment/Create.cshtml]
+[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/Edumind-Ikgai/IKGAI/Views/Comment/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tbWVudFxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/new-project/IKGAi/Views/Comment/Delete.cshtml]
+[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/Edumind-Ikgai/IKGAI/Views/Comment/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tbWVudFxEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/new-project/IKGAi/Views/Comment/Details.cshtml]
+[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/Edumind-Ikgai/IKGAI/Views/Comment/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tbWVudFxEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/new-project/IKGAi/Views/Comment/Edit.cshtml]
+[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/Edumind-Ikgai/IKGAI/Views/Comment/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tbWVudFxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/new-project/IKGAi/Views/Comment/Index.cshtml]
+[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/Edumind-Ikgai/IKGAI/Views/Comment/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tbWVudFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/new-project/IKGAi/Views/Home/Index.cshtml]
+[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/Edumind-Ikgai/IKGAI/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/new-project/IKGAi/Views/Home/Privacy.cshtml]
+[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/Edumind-Ikgai/IKGAI/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/new-project/IKGAi/Views/Shared/Error.cshtml]
+[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/Edumind-Ikgai/IKGAI/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/new-project/IKGAi/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/Edumind-Ikgai/IKGAI/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/new-project/IKGAi/Views/UserProfile/Create.cshtml]
+[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/Edumind-Ikgai/IKGAI/Views/UserProfile/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclByb2ZpbGVcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/new-project/IKGAi/Views/UserProfile/Delete.cshtml]
+[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/Edumind-Ikgai/IKGAI/Views/UserProfile/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclByb2ZpbGVcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/new-project/IKGAi/Views/UserProfile/Details.cshtml]
+[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/Edumind-Ikgai/IKGAI/Views/UserProfile/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclByb2ZpbGVcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/new-project/IKGAi/Views/UserProfile/Edit.cshtml]
+[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/Edumind-Ikgai/IKGAI/Views/UserProfile/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclByb2ZpbGVcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/new-project/IKGAi/Views/UserProfile/Index.cshtml]
+[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/Edumind-Ikgai/IKGAI/Views/UserProfile/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclByb2ZpbGVcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/new-project/IKGAi/Views/User/Create.cshtml]
+[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/Edumind-Ikgai/IKGAI/Views/User/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/new-project/IKGAi/Views/User/Delete.cshtml]
+[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/Edumind-Ikgai/IKGAI/Views/User/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/new-project/IKGAi/Views/User/Details.cshtml]
+[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/Edumind-Ikgai/IKGAI/Views/User/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/new-project/IKGAi/Views/User/Edit.cshtml]
+[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/Edumind-Ikgai/IKGAI/Views/User/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/new-project/IKGAi/Views/User/Index.cshtml]
+[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/Edumind-Ikgai/IKGAI/Views/User/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/new-project/IKGAi/Views/_ViewImports.cshtml]
+[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/Edumind-Ikgai/IKGAI/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/new-project/IKGAi/Views/_ViewStart.cshtml]
+[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/Edumind-Ikgai/IKGAI/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/new-project/IKGAi/Views/Shared/_Layout.cshtml]
+[C:/Users/nazmi/OneDrive/Desktop/A2-project/nazmi/Edumind-Ikgai/IKGAI/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-r3774pud6u

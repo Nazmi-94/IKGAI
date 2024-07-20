@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("IKGAi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f50e39b693dbfc89f385a99c8d6b21c884c7edd2")]
 [assembly: System.Reflection.AssemblyProductAttribute("IKGAi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("IKGAi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

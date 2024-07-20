@@ -1,13 +1,13 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\nazmi\\OneDrive\\Desktop\\A2-project\\nazmi\\new-project\\IKGAi\\",
+  "WorkspaceRootPath": "C:\\Users\\nazmi\\OneDrive\\Desktop\\A2-project\\nazmi\\Edumind-Ikgai\\IKGAI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{282F9354-7548-4953-A65D-8F232F8C5DC8}|IKGAi.csproj|c:\\users\\nazmi\\onedrive\\desktop\\a2-project\\nazmi\\new-project\\ikgai\\models\\career.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{282F9354-7548-4953-A65D-8F232F8C5DC8}|IKGAi.csproj|c:\\users\\nazmi\\onedrive\\desktop\\a2-project\\nazmi\\edumind-ikgai\\ikgai\\models\\career.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{282F9354-7548-4953-A65D-8F232F8C5DC8}|IKGAi.csproj|solutionrelative:models\\career.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{282F9354-7548-4953-A65D-8F232F8C5DC8}|IKGAi.csproj|c:\\users\\nazmi\\onedrive\\desktop\\a2-project\\nazmi\\new-project\\ikgai\\views\\userprofile\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{282F9354-7548-4953-A65D-8F232F8C5DC8}|IKGAi.csproj|c:\\users\\nazmi\\onedrive\\desktop\\a2-project\\nazmi\\edumind-ikgai\\ikgai\\views\\userprofile\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{282F9354-7548-4953-A65D-8F232F8C5DC8}|IKGAi.csproj|solutionrelative:views\\userprofile\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
@@ -28,11 +28,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Career.cs",
-              "DocumentMoniker": "C:\\Users\\nazmi\\OneDrive\\Desktop\\A2-project\\nazmi\\new-project\\IKGAi\\Models\\Career.cs",
+              "DocumentMoniker": "C:\\Users\\nazmi\\OneDrive\\Desktop\\A2-project\\nazmi\\Edumind-Ikgai\\IKGAI\\Models\\Career.cs",
               "RelativeDocumentMoniker": "Models\\Career.cs",
-              "ToolTip": "C:\\Users\\nazmi\\OneDrive\\Desktop\\A2-project\\nazmi\\new-project\\IKGAi\\Models\\Career.cs",
+              "ToolTip": "C:\\Users\\nazmi\\OneDrive\\Desktop\\A2-project\\nazmi\\Edumind-Ikgai\\IKGAI\\Models\\Career.cs",
               "RelativeToolTip": "Models\\Career.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-16T13:32:43.19Z",
               "EditorCaption": ""
@@ -41,9 +41,9 @@
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Create.cshtml",
-              "DocumentMoniker": "C:\\Users\\nazmi\\OneDrive\\Desktop\\A2-project\\nazmi\\new-project\\IKGAi\\Views\\UserProfile\\Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\nazmi\\OneDrive\\Desktop\\A2-project\\nazmi\\Edumind-Ikgai\\IKGAI\\Views\\UserProfile\\Create.cshtml",
               "RelativeDocumentMoniker": "Views\\UserProfile\\Create.cshtml",
-              "ToolTip": "C:\\Users\\nazmi\\OneDrive\\Desktop\\A2-project\\nazmi\\new-project\\IKGAi\\Views\\UserProfile\\Create.cshtml",
+              "ToolTip": "C:\\Users\\nazmi\\OneDrive\\Desktop\\A2-project\\nazmi\\Edumind-Ikgai\\IKGAI\\Views\\UserProfile\\Create.cshtml",
               "RelativeToolTip": "Views\\UserProfile\\Create.cshtml",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",

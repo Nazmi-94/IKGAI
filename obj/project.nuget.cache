@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jNGH970jCSI=",
+  "dgSpecHash": "nAlRO3pltFQ=",
   "success": true,
-  "projectFilePath": "C:\\Users\\nazmi\\OneDrive\\Desktop\\A2-project\\nazmi\\new-project\\IKGAi\\IKGAi.csproj",
+  "projectFilePath": "C:\\Users\\nazmi\\OneDrive\\Desktop\\A2-project\\nazmi\\Edumind-Ikgai\\IKGAI\\IKGAi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\nazmi\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\nazmi\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
