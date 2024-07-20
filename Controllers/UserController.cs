@@ -7,13 +7,18 @@ namespace IKGAi.Controllers
 {
     public class UserController : Controller
     {
-        private DB db = new DB();
+        private static DB _db;
+
+        public UserController(DB db)
+        {
+            _db = db;
+        }
 
         // GET: UserController
         public ActionResult Index()
         {
             List<User> users = new List<User>(); 
-            users = db.User.ToList();
+            users = _db.User.ToList();
 
             return View(users);
         }
@@ -21,7 +26,7 @@ namespace IKGAi.Controllers
         // GET: UserController/Details/5
         public ActionResult Details(int id)
         {
-            var userDetails = db.User.Find(id);
+            var userDetails = _db.User.Find(id);
             return View(userDetails);
         }
 
@@ -40,8 +45,8 @@ namespace IKGAi.Controllers
             try
             {
 
-                db.User.Add(newUser);
-                db.SaveChanges();
+                _db.User.Add(newUser);
+                _db.SaveChanges();
 
                 return RedirectToAction(nameof(Index));
             }
@@ -54,7 +59,7 @@ namespace IKGAi.Controllers
         // GET: UserController/Edit/5
         public ActionResult Edit(int id)
         {
-            var userEdit = db.User.Find(id);
+            var userEdit = _db.User.Find(id);
             return View(userEdit);
         }
 
@@ -65,13 +70,13 @@ namespace IKGAi.Controllers
         {
             try
             {
-                var existingUser = db.User.Find(updatedUser.Id);
+                var existingUser = _db.User.Find(updatedUser.Id);
                 if (existingUser != null)
                 {
                     existingUser.name = updatedUser.name;
                     existingUser.email = updatedUser.email;
                     existingUser.password = updatedUser.password;
-                    db.SaveChanges();
+                    _db.SaveChanges();
                    
                 }
                 return RedirectToAction(nameof(Index));
@@ -85,7 +90,7 @@ namespace IKGAi.Controllers
         // GET: UserController/Delete/5
         public ActionResult Delete(int id)
         {
-            var userDelete = db.User.Find(id);
+            var userDelete = _db.User.Find(id);
             return View(userDelete);
         }
 
@@ -96,11 +101,11 @@ namespace IKGAi.Controllers
         {
             try
             {
-                var userDelete = db.User.Find(id); 
+                var userDelete = _db.User.Find(id); 
                 if (userDelete != null)
                 {
-                    db.User.Remove(userDelete);
-                    db.SaveChanges();  
+                    _db.User.Remove(userDelete);
+                    _db.SaveChanges();  
                 }
                 return RedirectToAction(nameof(Index));
             }

@@ -6,9 +6,13 @@ namespace IKGAi.Models
     public class DB : DbContext
     {
         //1. Define the connection string
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer("Data Source=NAZMI-A2;Database=Ikgai;User ID=sa;Password=sa;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False");
+        //}
+
+        public DB(DbContextOptions<DB> context) : base(context) 
         {
-            optionsBuilder.UseSqlServer("Data Source=NAZMI-A2;Database=Ikgai;User ID=sa;Password=sa;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
