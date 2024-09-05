@@ -1,0 +1,15 @@
+﻿body {
+    background-color: #229799;
+    color: #424242;
+    padding: 50px;
+}
+
+a {
+    text-decoration: none;
+    color: #F5F5F5;
+  
+}
+
+a:hover {
+       color: #424242;
+    }
