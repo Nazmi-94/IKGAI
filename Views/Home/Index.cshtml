@@ -1,8 +1,58 @@
-﻿@{
+﻿@model List<Comment> 
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <div class="container">
+        <div class="row" style="padding-bottom: 20px;">
+            @{
+                var i = 0;
+                foreach (var item in Model)
+                {
+                    if (i == 3 || i == 6) 
+                    {
+                                @:<div class="row" style="padding-bottom: 20px;">
+                    }
+        
+                            <div class="col-sm-4">
+                                <div class="card">
+                                    <div class="card-body" >
+                                        <h5 class="card-title"><a href="Home/ProductDetails/@item.Id">@item.User.name</a></h5>
+                                        <p class="card-text">@item.commentText</p>
+                                        <a href="#" class="btn btn-primary" onclick="incrementCart()">+ Shporte</a>
+                                    </div>
+                                </div>
+                            </div>    
+        
+                    if (i == 2 || i == 5) 
+                    {
+                                @:</div>
+                    }
+        
+                    i++;
+                }
+            }
+
+        </div>
+    </div>
 </div>
+<script>
+    // var container = document.getElementsByClassName("container");
+
+    // function displayMsg(titulli) { 
+    //     alert("Produkti " + titulli + " u shtua ne shporte");
+    // }
+
+    // function incrementCart() { 
+    //         var shporta = $("#shporta").text();
+    //     if (shporta == "") shporta = 0;
+    //         var shto = parseInt(shporta) + 1;
+    //         $("#shporta").text(shto);
+    //     }
+
+</script>
+<!-- Add Font Awesome CDN -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>

@@ -1,7 +1,9 @@
-﻿body {
+﻿
+body {
     background-color: #229799;
     color: #424242;
     padding: 50px;
+    font-family: Roboto
 }
 
 a {
@@ -13,3 +15,7 @@ a {
 a:hover {
        color: #424242;
     }
+
+card-body * {
+    color: black;
+}
