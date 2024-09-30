@@ -16,16 +16,19 @@
                     {
                                 @:<div class="row" style="padding-bottom: 20px;">
                     }
-        
-                            <div class="col-sm-4">
+
+                             <div class="col">
                                 <div class="card">
-                                    <div class="card-body" >
-                                        <h5 class="card-title"><a href="Home/ProductDetails/@item.Id">@item.User.name</a></h5>
-                                        <p class="card-text">@item.commentText</p>
-                                        <a href="#" class="btn btn-primary" onclick="incrementCart()">+ Shporte</a>
-                                    </div>
+                                  <img src="~/img/user.png" class="card-img-top rounded-image" alt="...">
+                                  <div class="card-body">
+                                    <h5 class="card-title text-dark">@item.User.name</h5>
+                                    <p class="card-text text-dark">
+                                       <span class="comment-text" id="comment-@item.Id">@item.commentText</span>
+                                       <a href="javascript:void(0);" class="read-more" id="read-more-@item.Id" style="display: none;">Read More</a>
+                                    </p>
+                                  </div>
                                 </div>
-                            </div>    
+                              </div>
         
                     if (i == 2 || i == 5) 
                     {
@@ -40,18 +43,42 @@
     </div>
 </div>
 <script>
-    // var container = document.getElementsByClassName("container");
+  document.addEventListener("DOMContentLoaded", function () {
+    // Get all comment text elements
+    var comments = document.querySelectorAll('.comment-text');
 
-    // function displayMsg(titulli) { 
-    //     alert("Produkti " + titulli + " u shtua ne shporte");
-    // }
+    comments.forEach(function (comment) {
+        var fullText = comment.innerText;
+        var wordLimit = 10;
+        
+        // Split the text into words
+        var words = fullText.split(' ');
 
-    // function incrementCart() { 
-    //         var shporta = $("#shporta").text();
-    //     if (shporta == "") shporta = 0;
-    //         var shto = parseInt(shporta) + 1;
-    //         $("#shporta").text(shto);
-    //     }
+        if (words.length > wordLimit) {
+            // Truncate to the first 20 words
+            var truncatedText = words.slice(0, wordLimit).join(' ') + '...';
+            var commentId = comment.id.split('-')[1]; // Get the unique ID from the span
+            
+            // Set the truncated text initially
+            comment.innerText = truncatedText;
+
+            // Show "Read More" link
+            var readMoreLink = document.getElementById('read-more-' + commentId);
+            readMoreLink.style.display = 'inline';
+
+            // Add event listener for toggling
+            readMoreLink.addEventListener('click', function () {
+                if (comment.innerText === truncatedText) {
+                    comment.innerText = fullText;
+                    readMoreLink.innerText = 'Read Less';
+                } else {
+                    comment.innerText = truncatedText;
+                    readMoreLink.innerText = 'Read More';
+                }
+            });
+        }
+    });
+});
 
 </script>
 <!-- Add Font Awesome CDN -->

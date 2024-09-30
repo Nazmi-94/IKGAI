@@ -9,9 +9,25 @@
 
 </head>
 <body>
-    <div>
-        @RenderBody()
+
+    <div class="container">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-2 sidebar">
+                <h4 class="text-light">Admin Panel</h4>
+                <a asp-controller="Home" asp-action="Index">Home</a>
+                <a asp-controller="Comment" asp-action="Index">Comments</a>
+                <a asp-controller="User" asp-action="Index">Manage Users</a>
+                <a asp-controller="UserProfile" asp-action="Index">User Profile</a>
+            </div>
+
+            <!-- Main Content Area -->
+            <div class="col-md-10 p-5 content">
+                @RenderBody()
+            </div>
+        </div>
     </div>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
