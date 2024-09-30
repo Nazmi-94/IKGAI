@@ -22,7 +22,14 @@ body {
     background-color: #3A6D8C;
     color: #fff;
 }
-
+/*
 navbar{
     background-color: 
+}
+*/
+.rounded-image {
+    width: 75px;
+    margin: auto;
+    border-radius: 50%;
+    padding-top: 15px;
 }
