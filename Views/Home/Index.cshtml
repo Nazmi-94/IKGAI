@@ -44,34 +44,34 @@
 </div>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    // Get all comment text elements
+  
     var comments = document.querySelectorAll('.comment-text');
 
     comments.forEach(function (comment) {
         var fullText = comment.innerText;
-        var wordLimit = 10;
-        
-        // Split the text into words
+        var wordLimit = 10;  
+     
         var words = fullText.split(' ');
 
         if (words.length > wordLimit) {
-            // Truncate to the first 20 words
+          
             var truncatedText = words.slice(0, wordLimit).join(' ') + '...';
-            var commentId = comment.id.split('-')[1]; // Get the unique ID from the span
+            var commentId = comment.id.split('-')[1]; 
             
-            // Set the truncated text initially
+          
             comment.innerText = truncatedText;
 
-            // Show "Read More" link
             var readMoreLink = document.getElementById('read-more-' + commentId);
             readMoreLink.style.display = 'inline';
 
-            // Add event listener for toggling
+            
             readMoreLink.addEventListener('click', function () {
                 if (comment.innerText === truncatedText) {
                     comment.innerText = fullText;
                     readMoreLink.innerText = 'Read Less';
-                } else {
+                } 
+                else 
+                {
                     comment.innerText = truncatedText;
                     readMoreLink.innerText = 'Read More';
                 }

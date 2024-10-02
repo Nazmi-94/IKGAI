@@ -1,14 +1,31 @@
-﻿
+﻿:root {
+    --primary: #0E8A74;
+    --secondary: #FB3E7A;
+    --primary-hover: #095c4d;
+    --primary-light: #13b89b;
+    --primary-dark: #095c4d;
+    --rgba-primary-03: rgba(14, 138, 116, 0.03);
+    --rgba-primary-1: rgba(14, 138, 116, 0.1);
+    --rgba-primary-2: rgba(14, 138, 116, 0.2);
+    --rgba-primary-3: rgba(14, 138, 116, 0.3);
+    --rgba-primary-4: rgba(14, 138, 116, 0.4);
+    --rgba-primary-5: rgba(14, 138, 116, 0.5);
+    --rgba-primary-6: rgba(14, 138, 116, 0.6);
+    --rgba-primary-7: rgba(14, 138, 116, 0.7);
+    --rgba-primary-8: rgba(14, 138, 116, 0.8);
+    --rgba-primary-9: rgba(14, 138, 116, 0.9);
+    --font-family-base: Roboto, sans-serif;
+    --font-family-title: Roboto, sans-seri
+}
+
 body {
-    background-color: #229799;
-    color: #424242;
-/*    padding: 50px;*/
-    font-family: Roboto
+    background-color: #f9f9f9;
+    font-family: var(--font-family-base) !important;
 }
 
 a {
     text-decoration: none;
-    color: #F5F5F5;
+    color: var(--primary);
   
 }
 

@@ -1,4 +1,4 @@
-:root {
+﻿:root {
     --primary: #0E8A74;
     --secondary: #FB3E7A;
     --primary-hover: #095c4d;
@@ -17,38 +17,22 @@
     --font-family-base: Roboto, sans-serif;
     --font-family-title: Roboto, sans-seri
 }
-html {
-    font-size: 14px;
+
+* {
+    font-family: var(--font-family-base) !important;
+   
+    font-weight: 600;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+body {
+    background-color: #f9f9f9;
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+.navbar-brand {
+    font-weight: 800;
+    color: var(--primary) !important;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-/*body {
-    margin-bottom: 60px;
-    background-color: #3A6D8C;
-    color: #f9f9f9;
-}*/
-/*
-navbar{
-    background-color: 
-}
-*/
-.rounded-image {
-    width: 75px;
-    margin: auto;
-    border-radius: 50%;
-    padding-top: 15px;
+.navbar-light .navbar-nav .nav-link {
+    color: #759791 !important;
 }
