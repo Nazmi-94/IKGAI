@@ -1,85 +1,88 @@
-﻿@model List<Comment> 
-@{
-    ViewData["Title"] = "Home Page";
-}
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    <div class="container">
-        <div class="row" style="padding-bottom: 20px;">
-            @{
-                var i = 0;
-                foreach (var item in Model)
+﻿<div class="container">
+    <div class="row" id="comments-section">
+        @{
+            var i = 0;
+            foreach (var item in Model)
+            {
+                if (i % 3 == 0 && i > 0) 
                 {
-                    if (i == 3 || i == 6) 
-                    {
-                                @:<div class="row" style="padding-bottom: 20px;">
-                    }
-
-                             <div class="col">
-                                <div class="card">
-                                  <img src="~/img/user.png" class="card-img-top rounded-image" alt="...">
-                                  <div class="card-body">
-                                    <h5 class="card-title text-dark">@item.User.name</h5>
-                                    <p class="card-text text-dark">
-                                       <span class="comment-text" id="comment-@item.Id">@item.commentText</span>
-                                       <a href="javascript:void(0);" class="read-more" id="read-more-@item.Id" style="display: none;">Read More</a>
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-        
-                    if (i == 2 || i == 5) 
-                    {
-                                @:</div>
-                    }
-        
-                    i++;
+                    @:</div><div class="row" style="padding-bottom: 20px;">
                 }
-            }
-
+        <div class="col">
+            <div class="card">
+                <img src="~/img/user.png" class="card-img-top rounded-image" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title text-dark">@item.User.name</h5>
+                    <p class="card-text text-dark">
+                        <span class="comment-text" id="comment-@item.Id">@item.commentText</span>
+                        <a href="javascript:void(0);" class="read-more" id="read-more-@item.Id" style="display: none;">Read More</a>
+                    </p>
+                </div>
+            </div>
         </div>
+                i++;
+            }
+        }
     </div>
+    <button id="load-more" class="btn btn-primary">Load More</button>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-  
-    var comments = document.querySelectorAll('.comment-text');
+    $(document).ready(function () {
+        // Initialize skip variable
+        $('#load-more').data('skip', 3); // Start from 3 since you initially loaded 3 comments
 
-    comments.forEach(function (comment) {
-        var fullText = comment.innerText;
-        var wordLimit = 10;  
-     
-        var words = fullText.split(' ');
+        // Handle the "Load More" button click
+        $('#load-more').click(function () {
+            var skip = $(this).data('skip');
 
-        if (words.length > wordLimit) {
-          
-            var truncatedText = words.slice(0, wordLimit).join(' ') + '...';
-            var commentId = comment.id.split('-')[1]; 
-            
-          
-            comment.innerText = truncatedText;
+            // Perform AJAX request to load more comments
+            $.ajax({
+                url: '/Home/LoadMoreComments',
+                type: 'GET',
+                data: { skip: skip },
+                success: function (response) {
+                    if (response.length > 0) {
+                        // Loop through each new comment returned from the server
+                        response.forEach(function (comment, index) {
+                            // Check if we need to start a new row
+                            if ((skip + index) % 3 === 0) {
+                                $('#comments-section').append('<div class="row" style="padding-bottom: 20px;"></div>');
+                            }
 
-            var readMoreLink = document.getElementById('read-more-' + commentId);
-            readMoreLink.style.display = 'inline';
+                            // Dynamically create a new comment card
+                            var newComment = `
+                                <div class="col">
+                                    <div class="card">
+                                        <img src="/img/user.png" class="card-img-top rounded-image" alt="...">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-dark">${comment.user.name}</h5>
+                                            <p class="card-text text-dark">
+                                                <span class="comment-text" id="comment-${comment.id}">${comment.commentText}</span>
+                                                <a href="javascript:void(0);" class="read-more" id="read-more-${comment.id}" style="display: none;">Read More</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
 
-            
-            readMoreLink.addEventListener('click', function () {
-                if (comment.innerText === truncatedText) {
-                    comment.innerText = fullText;
-                    readMoreLink.innerText = 'Read Less';
-                } 
-                else 
-                {
-                    comment.innerText = truncatedText;
-                    readMoreLink.innerText = 'Read More';
+                            // Append the new comment to the last row
+                            $('#comments-section .row:last').append(newComment);
+                        });
+
+                        // Increment the skip value for the next batch of comments
+                        $('#load-more').data('skip', skip + response.length);
+                    } else {
+                        // Optionally handle the case when there are no more comments
+                        $('#load-more').hide(); // Hide button if no more comments to load
+                    }
+                },
+                error: function () {
+                    alert('An error occurred while loading more comments.');
                 }
             });
-        }
+        });
     });
-});
-
 </script>
-<!-- Add Font Awesome CDN -->
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
