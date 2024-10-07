@@ -16,11 +16,40 @@ namespace IKGAi.Controllers
             _db = db;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int id)
         {
             var lastComments = _db.Comment.Include(c=> c.User).Take(6).ToList();
             return View(lastComments);
+
         }
+
+        [HttpGet]
+        public IActionResult LoadMoreComments(int skip)
+        {
+            try
+            {
+                var moreComments = _db.Comment
+                    .Skip(skip)
+                    .Take(3)
+                    .Select(comment => new
+                    {
+                        id = comment.Id,
+                        user = new { name = comment.User.name }, 
+                        commentText = comment.commentText
+                    })
+                    .ToList();
+
+                return Json(moreComments);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception (optional)
+                Console.WriteLine(ex.Message);
+                return StatusCode(500, "Internal server error");
+            }
+        }
+
+
 
         public IActionResult Privacy()
         {
