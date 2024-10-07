@@ -8,7 +8,7 @@
                 {
                     @:</div><div class="row" style="padding-bottom: 20px;">
                 }
-        <div class="col">
+        <div class="col-lg-4" id="comments-loaded">
             <div class="card">
                 <img src="~/img/user.png" class="card-img-top rounded-image" alt="...">
                 <div class="card-body">
@@ -30,59 +30,66 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-    $(document).ready(function () {
-        // Initialize skip variable
-        $('#load-more').data('skip', 3); // Start from 3 since you initially loaded 3 comments
+$(document).ready(function () {
+    // Initialize skip variable based on the number of already loaded comments
+    var initialSkip = $('#comments-section #comments-loaded').length; // Count existing comment cards
+    $('#load-more').data('skip', initialSkip); // Set the initial skip value
 
-        // Handle the "Load More" button click
-        $('#load-more').click(function () {
-            var skip = $(this).data('skip');
+    // Define the success handler function
+    function handleSuccess(response) {
+        var skip = $('#load-more').data('skip'); // Get the current skip value
 
-            // Perform AJAX request to load more comments
-            $.ajax({
-                url: '/Home/LoadMoreComments',
-                type: 'GET',
-                data: { skip: skip },
-                success: function (response) {
-                    if (response.length > 0) {
-                        // Loop through each new comment returned from the server
-                        response.forEach(function (comment, index) {
-                            // Check if we need to start a new row
-                            if ((skip + index) % 3 === 0) {
-                                $('#comments-section').append('<div class="row" style="padding-bottom: 20px;"></div>');
-                            }
-
-                            // Dynamically create a new comment card
-                            var newComment = `
-                                <div class="col">
-                                    <div class="card">
-                                        <img src="/img/user.png" class="card-img-top rounded-image" alt="...">
-                                        <div class="card-body">
-                                            <h5 class="card-title text-dark">${comment.user.name}</h5>
-                                            <p class="card-text text-dark">
-                                                <span class="comment-text" id="comment-${comment.id}">${comment.commentText}</span>
-                                                <a href="javascript:void(0);" class="read-more" id="read-more-${comment.id}" style="display: none;">Read More</a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            `;
-
-                            // Append the new comment to the last row
-                            $('#comments-section .row:last').append(newComment);
-                        });
-
-                        // Increment the skip value for the next batch of comments
-                        $('#load-more').data('skip', skip + response.length);
-                    } else {
-                        // Optionally handle the case when there are no more comments
-                        $('#load-more').hide(); // Hide button if no more comments to load
-                    }
-                },
-                error: function () {
-                    alert('An error occurred while loading more comments.');
+        if (response.length > 0) {
+            // Loop through each new comment returned from the server
+            response.forEach(function (comment, index) {
+                // Check if we need to start a new row
+                if ((skip + index) % 3 === 0) {
+                    $('#comments-section').append('<div class="row" style="padding-bottom: 20px;"></div>');
                 }
+
+                // Dynamically create a new comment card
+                var newComment = `
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <img src="/img/user.png" class="card-img-top rounded-image" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title text-dark">${comment.user.name}</h5>
+                                <p class="card-text text-dark">
+                                    <span class="comment-text" id="comment-${comment.id}">${comment.commentText}</span>
+                                    <a href="javascript:void(0);" class="read-more" id="read-more-${comment.id}" style="display: none;">Read More</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                // Append the new comment to the last row
+                $('#comments-section .row:last').append(newComment);
             });
+
+            // Increment the skip value for the next batch of comments
+            $('#load-more').data('skip', skip + response.length);
+        } else {
+            // Optionally handle the case when there are no more comments
+            $('#load-more').hide(); // Hide button if no more comments to load
+        }
+    }
+
+    // Handle the "Load More" button click
+    $('#load-more').click(function () {
+        var skip = $(this).data('skip'); // Get the current skip value
+
+        // Perform AJAX request to load more comments
+        $.ajax({
+            url: '/Home/LoadMoreComments',
+            type: 'GET',
+            data: { skip: skip }, // Send current skip value to server
+            success: handleSuccess,  // Use the external success function
+            error: function () {
+                alert('An error occurred while loading more comments.');
+            }
         });
     });
+});
+
 </script>

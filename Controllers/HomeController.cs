@@ -18,7 +18,7 @@ namespace IKGAi.Controllers
 
         public IActionResult Index(int id)
         {
-            var lastComments = _db.Comment.Include(c=> c.User).Take(6).ToList();
+            var lastComments = _db.Comment.Include(c=> c.User).Take(3).ToList();
             return View(lastComments);
 
         }
