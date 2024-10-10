@@ -132,5 +132,32 @@
             });
         }
 
+
+           // Function to handle edit form submission
+    function submitEditForm() {
+        var form = $("#commentEditForm");
+        $.ajax({
+            url: form.attr('action'),
+            type: 'POST',
+            data: form.serialize(),
+            success: function (response) {
+                if (response) {
+                    $('#commentModal').modal('hide');
+                    // Update the row with the edited comment data
+                    var row = $('#commentsTable tbody').find('tr').filter(function() {
+                        return $(this).find('td:first').text() == response.id;
+                    });
+                    row.find('td:nth-child(2)').text(response.userId);
+                    row.find('td:nth-child(3)').text(response.commentText);
+                    row.find('td:nth-child(4)').text(response.commentDate);
+                } else {
+                    alert("Error: " + response.message);
+                }
+            },
+            error: function (xhr, status, error) {
+                alert("Something went wrong: " + error);
+            }
+        });
+    }
     </script>
 }

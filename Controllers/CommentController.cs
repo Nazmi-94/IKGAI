@@ -91,6 +91,7 @@ namespace IKGAi.Controllers
                     existingComment.commentDate = updatedCommnet.commentDate;
                     existingComment.userId = updatedCommnet.userId;
                     _db.SaveChanges();
+                    return Json(updatedCommnet);  // Return the updated comment data
                 }
                 return RedirectToAction(nameof(Index));
             }
