@@ -159,5 +159,28 @@
             }
         });
     }
+
+                function submitDeleteForm() {
+                var form = $("#commentDeleteForm");
+                $.ajax({
+                    url: form.attr('action'),
+                    type: 'POST',
+                    data: form.serialize(),
+                    success: function (response) {
+                        if (response.success) {
+                            $('#commentModal').modal('hide');
+                            // Remove the deleted comment row
+                            $('#commentsTable tbody').find('tr').filter(function() {
+                                return $(this).find('td:first').text() == response.id;
+                            }).remove();
+                        } else {
+                            alert("Error: " + response.message);
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        alert("Something went wrong: " + error);
+                    }
+                });
+            }
     </script>
 }
