@@ -116,20 +116,30 @@ namespace IKGAi.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
-            try
+            //try
+            //{
+            //    var commetD = _db.Comment.Find(id);
+            //    if (commetD != null)
+            //    {
+            //        _db.Comment.Remove(commetD);
+            //        _db.SaveChanges();
+            //    }    
+            //    return RedirectToAction(nameof(Index));
+            //}
+            //catch
+            //{
+            //    return View();
+            //}
+            var comment = _db.Comment.Find(id);
+            if (comment == null)
             {
-                var commetD = _db.Comment.Find(id);
-                if (commetD != null)
-                {
-                    _db.Comment.Remove(commetD);
-                    _db.SaveChanges();
-                }    
-                return RedirectToAction(nameof(Index));
+                return Json(new { success = false, message = "Comment not found." });
             }
-            catch
-            {
-                return View();
-            }
+
+            _db.Comment.Remove(comment);
+            _db.SaveChanges();
+
+            return Json(new { success = true, id = id });
         }
     }
 }
