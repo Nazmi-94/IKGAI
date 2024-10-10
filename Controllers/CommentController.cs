@@ -26,9 +26,11 @@ namespace IKGAi.Controllers
         // GET: CommentController/Details/5
         public ActionResult Details(int id)
         {
-            var commentDetails = _db.Comment.Include(x=> x.User).Where(x => x.Id == id).SingleOrDefault();
-            //var commentDe = db.Comment.Find(id);
-            return View(commentDetails);
+            //var commentDetails = _db.Comment.Include(x=> x.User).Where(x => x.Id == id).SingleOrDefault();
+            ////var commentDe = db.Comment.Find(id);
+            //return View(commentDetails);
+            var commentDetails = _db.Comment.Include(x => x.User).Where(x => x.Id == id).SingleOrDefault();
+            return PartialView("_DetailsPartial", commentDetails);  
         }
 
         // GET: CommentController/Create
@@ -38,7 +40,7 @@ namespace IKGAi.Controllers
             var user_sel_list = new SelectList(users, "Id", "name");
             ViewBag.users = user_sel_list;
            
-            return View();
+            return PartialView("_CreatePartial");
         }
 
         // POST: CommentController/Create
@@ -48,11 +50,11 @@ namespace IKGAi.Controllers
         {
             try
             {
-                
+
                 _db.Comment.Add(newComment);
                 _db.SaveChanges();
 
-                return RedirectToAction(nameof(Index));
+                return Json(newComment);
             }
             catch
             {
@@ -63,11 +65,16 @@ namespace IKGAi.Controllers
         // GET: CommentController/Edit/5
         public ActionResult Edit(int id)
         {
+            //var comment = _db.Comment.Find(id);
+            //var users = _db.User.ToList();
+            //var user_sel_list = new SelectList(users, "Id", "name");
+            //ViewBag.users = user_sel_list;
+            //return View(comment);
             var comment = _db.Comment.Find(id);
             var users = _db.User.ToList();
             var user_sel_list = new SelectList(users, "Id", "name");
             ViewBag.users = user_sel_list;
-            return View(comment);
+            return PartialView("_EditPartial", comment); 
         }
 
         // POST: CommentController/Edit/5
@@ -89,16 +96,18 @@ namespace IKGAi.Controllers
             }
             catch
             {
-                return View();
+                return Json(new { success = false, message = "An error occurred" });
             }
         }
 
         // GET: CommentController/Delete/5
         public ActionResult Delete(int id)
         {
-            var comment = _db.Comment.Find(id);
+            //var comment = _db.Comment.Find(id);
 
-            return View(comment);
+            //return View(comment);
+            var comment = _db.Comment.Find(id);
+            return PartialView("_DeletePartial", comment);  
         }
 
         // POST: CommentController/Delete/5

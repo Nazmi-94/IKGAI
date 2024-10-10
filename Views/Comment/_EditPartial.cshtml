@@ -1,0 +1,19 @@
+﻿@model IKGAi.Models.Comment
+
+<div id="editCommentForm"> 
+    <form id="commentEditForm" asp-action="Edit" method="post">
+        <div class="form-group">
+            <label asp-for="commentText"></label>
+            <input asp-for="commentText" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="userId"></label>
+            <select asp-for="userId" class="form-control" asp-items="ViewBag.users"></select>
+        </div>
+        <div class="form-group">
+            <label asp-for="commentDate"></label>
+            <input asp-for="commentDate" class="form-control" type="date" />
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+</div>
