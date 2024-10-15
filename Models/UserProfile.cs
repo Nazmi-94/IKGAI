@@ -12,6 +12,5 @@ namespace IKGAi.Models
         public string interests { get; set; }
         public string education { get; set; }
 
-        public virtual List<ManyToMany> ManyToManies { get; set; }
     }
 }

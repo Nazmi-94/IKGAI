@@ -13,9 +13,6 @@ namespace IKGAi.Models
         public virtual List<Career> careers { get; set; }
 
 
-        //Testing Many to Many
-        public  virtual List<ManyToMany> ManyToManies { get; set; }
-
 
 
     }

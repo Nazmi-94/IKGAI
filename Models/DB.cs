@@ -15,11 +15,6 @@ namespace IKGAi.Models
         {
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<ManyToMany>().HasKey(sc => new { sc.UserId, sc.UserProfileId });
-        }
-
 
         //2. Define the models that will be tables in the database
         public DbSet<Career> Career { get; set; }
