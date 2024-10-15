@@ -117,10 +117,13 @@
                             '<td>' + response.userId + '</td>' +
                             '<td>' + response.commentText + '</td>' +
                             '<td>' + response.commentDate + '</td>' +
-                            '<td><button type="button" class="btn">Edit</button></td>' +
-                            '<td><button type="button" class="btn">Details</button></td>' +
-                            '<td><button type="button" class="btn">Delete</button></td>' +
-                            '</tr>';
+                            '<td><button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#commentModal" ' +
+                            'onclick="loadModalContent(\'/Comment/Edit/' + response.id + '\', \'Edit Comment\')">Edit</button></td>' +
+                            '<td><button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#commentModal" ' +
+                            'onclick="loadModalContent(\'/Comment/Details/' + response.id + '\', \'Comment Details\')">Details</button></td>' +
+                            '<td><button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#commentModal" ' +
+                            'onclick="loadModalContent(\'/Comment/Delete/' + response.id + '\', \'Delete Comment\')">Delete</button></td>' +
+                            '</tr>';;
                         $('#commentsTable tbody').append(newCommentRow);
                     } else {
                         alert("Error: " + response.message);
