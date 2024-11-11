@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using IKGAi.Models;
+using IKGAI.Domain.Entities;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using IKGAI.Infrastructure;
 
 namespace IKGAi.Controllers
 {

@@ -1,4 +1,5 @@
-using IKGAi.Models;
+using IKGAI.Domain.Entities;
+using IKGAI.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

@@ -1,4 +1,5 @@
-using IKGAi.Models;
+using IKGAI.Domain.Entities;
+using IKGAI.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
@@ -16,6 +17,10 @@ namespace IKGAi.Controllers
             _db = db;
         }
 
+        public IActionResult Login()
+        {
+            return View(); // Returns the Login.cshtml as a full page view
+        }
         public IActionResult Index(int id)
         {
             var lastComments = _db.Comment.Include(c=> c.User).Take(3).ToList();
@@ -49,6 +54,8 @@ namespace IKGAi.Controllers
             }
         }
 
+
+        public IActionResult GetWeatherForecast;
 
 
         public IActionResult Privacy()

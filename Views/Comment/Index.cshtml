@@ -1,4 +1,4 @@
-﻿@model IEnumerable<IKGAi.Models.Comment>
+﻿@model IEnumerable<Comment>
 
 @{
     ViewData["Title"] = "Index";
@@ -54,7 +54,7 @@
 
                 <td>
                     <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#commentModal"
-                            onclick="loadModalContent('@Url.Action("Edit", "Comment", new { id = item.Id })', 'Edit Comment')">
+                            onclick="loadModalContent('@Url.Action("RenderEditPartialView", "Comment", new { id = item.Id })', 'Edit Comment')">
                         Edit
                     </button>
                 </td>
