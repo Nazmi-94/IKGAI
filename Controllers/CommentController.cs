@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using IKGAi.Models;
+using IKGAI.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using IKGAI.Domain.Entities;
 
 
 namespace IKGAi.Controllers
@@ -62,44 +63,82 @@ namespace IKGAi.Controllers
             }
         }
 
-        // GET: CommentController/Edit/5
-        public ActionResult Edit(int id)
+        //// GET: CommentController/Edit/5
+        //public ActionResult Edit(int id)
+        //{
+        //    //var comment = _db.Comment.Find(id);
+        //    //var users = _db.User.ToList();
+        //    //var user_sel_list = new SelectList(users, "Id", "name");
+        //    //ViewBag.users = user_sel_list;
+        //    //return View(comment);
+        //    var comment = _db.Comment.Find(id);
+        //    var users = _db.User.ToList();
+        //    var user_sel_list = new SelectList(users, "Id", "name");
+        //    ViewBag.users = user_sel_list;
+        //    return PartialView("_EditPartial", comment); 
+        //}
+
+
+        [HttpGet("api/comment/edit/{id}")]
+        public IActionResult GetCommentForEdit(int id)
         {
-            //var comment = _db.Comment.Find(id);
-            //var users = _db.User.ToList();
-            //var user_sel_list = new SelectList(users, "Id", "name");
-            //ViewBag.users = user_sel_list;
-            //return View(comment);
             var comment = _db.Comment.Find(id);
+            if (comment == null)
+            {
+                return NotFound();
+            }
+
             var users = _db.User.ToList();
-            var user_sel_list = new SelectList(users, "Id", "name");
-            ViewBag.users = user_sel_list;
-            return PartialView("_EditPartial", comment); 
+
+            return Json(new { comment, users });
         }
 
-        // POST: CommentController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(Comment updatedCommnet)
+        public IActionResult RenderEditPartialView()
         {
-            try
-            {
-                var existingComment = _db.Comment.Find(updatedCommnet.Id);
-                if (existingComment != null)
-                {
-                    existingComment.commentText = updatedCommnet.commentText;
-                    existingComment.commentDate = updatedCommnet.commentDate;
-                    existingComment.userId = updatedCommnet.userId;
-                    _db.SaveChanges();
-                    return Json(updatedCommnet);  // Return the updated comment data
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return Json(new { success = false, message = "An error occurred" });
-            }
+            return PartialView("_EditPartial");
         }
+
+        [HttpPost("api/comment/edit")]
+        public IActionResult SubmitEditComment([FromBody] Comment updatedComment)
+        {
+            var existingComment = _db.Comment.Find(updatedComment.Id);
+
+            if (existingComment == null)
+            {
+                return Json(new { success = false, message = "Comment not found." });
+            }
+
+            existingComment.commentText = updatedComment.commentText;
+            existingComment.commentDate = updatedComment.commentDate;
+            existingComment.userId = updatedComment.userId;
+
+            _db.SaveChanges();
+
+            return Json(new { success = true, updatedComment });
+        }
+        //// POST: CommentController/Edit/5
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Edit(Comment updatedCommnet)
+        //{
+        //    try
+        //    {
+        //        var existingComment = _db.Comment.Find(updatedCommnet.Id);
+        //        if (existingComment != null)
+        //        {
+        //            existingComment.commentText = updatedCommnet.commentText;
+        //            existingComment.commentDate = updatedCommnet.commentDate;
+        //            existingComment.userId = updatedCommnet.userId;
+        //            _db.SaveChanges();
+        //            return Json(updatedCommnet);  // Return the updated comment data
+        //        }
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    catch
+        //    {
+        //        return Json(new { success = false, message = "An error occurred" });
+        //    }
+        //}
 
         // GET: CommentController/Delete/5
         public ActionResult Delete(int id)

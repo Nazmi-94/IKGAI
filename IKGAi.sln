@@ -3,7 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34928.147
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IKGAi", "IKGAi.csproj", "{282F9354-7548-4953-A65D-8F232F8C5DC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IKGAi", "IKGAi.csproj", "{282F9354-7548-4953-A65D-8F232F8C5DC8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IKGAI.API", "..\IKGAI.API\IKGAI.API.csproj", "{7CFF356E-E6F3-45EE-9C5A-9F51CF9A3143}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IKGAI.BLL", "..\IKGAI.BLL\IKGAI.BLL.csproj", "{AC7474E4-8D77-4718-85DD-B3982AB5E9E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IKGAI.Domain", "..\IKGAI.Domain\IKGAI.Domain.csproj", "{CC9F260E-724F-4C24-8276-9906B2629310}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IKGAI.Infrastructure", "..\IKGAI.Infrastructure\IKGAI.Infrastructure.csproj", "{E8AD7C08-8A58-4203-9CA1-A53699058D06}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +23,22 @@ Global
 		{282F9354-7548-4953-A65D-8F232F8C5DC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{282F9354-7548-4953-A65D-8F232F8C5DC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{282F9354-7548-4953-A65D-8F232F8C5DC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CFF356E-E6F3-45EE-9C5A-9F51CF9A3143}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CFF356E-E6F3-45EE-9C5A-9F51CF9A3143}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CFF356E-E6F3-45EE-9C5A-9F51CF9A3143}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CFF356E-E6F3-45EE-9C5A-9F51CF9A3143}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC7474E4-8D77-4718-85DD-B3982AB5E9E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC7474E4-8D77-4718-85DD-B3982AB5E9E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC7474E4-8D77-4718-85DD-B3982AB5E9E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC7474E4-8D77-4718-85DD-B3982AB5E9E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC9F260E-724F-4C24-8276-9906B2629310}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC9F260E-724F-4C24-8276-9906B2629310}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC9F260E-724F-4C24-8276-9906B2629310}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC9F260E-724F-4C24-8276-9906B2629310}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8AD7C08-8A58-4203-9CA1-A53699058D06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8AD7C08-8A58-4203-9CA1-A53699058D06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8AD7C08-8A58-4203-9CA1-A53699058D06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8AD7C08-8A58-4203-9CA1-A53699058D06}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

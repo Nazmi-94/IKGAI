@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using IKGAi.Models;
+using IKGAI.Domain.Entities;
+using IKGAI.Infrastructure;
 
 
 namespace IKGAi.Controllers
