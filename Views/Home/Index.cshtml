@@ -6,27 +6,48 @@
             {
                 if (i % 3 == 0 && i > 0) 
                 {
-                    @:</div><div class="row" style="padding-bottom: 20px;">
+                    @:<div class="row" style="padding-bottom: 20px;">
                 }
-        <div class="col-lg-4" id="comments-loaded">
-            <div class="card">
-                <img src="~/img/user.png" class="card-img-top rounded-image" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title text-dark">@item.User.name</h5>
-                    <p class="card-text text-dark">
-                        <span class="comment-text" id="comment-@item.Id">@item.commentText</span>
-                        <a href="javascript:void(0);" class="read-more" id="read-more-@item.Id" style="display: none;">Read More</a>
-                    </p>
-                </div>
-            </div>
-        </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 ">
+                    <div class="card border-primary mb-3 my-3">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.User.name</h5>
+                            <p class="card-subtitle text-muted mb-2" id="comment-@item.Id">@item.commentDate</p>
+  
+                            <div class="mb-2">
+                                <span class="text-warning"><i class="fas fa-star"></i></span>
+                                <span class="text-warning"><i class="fas fa-star"></i></span>
+                                <span class="text-warning"><i class="fas fa-star"></i></span>
+                                <span class="text-warning"><i class="fas fa-star"></i></span>
+                                <span class="text-secondary"><i class="far fa-star"></i></span>
+                            </div>
+  
+                            <p class="card-text" id="comment-@item.Id">@item.commentText</p>
+                            <button class="btn btn-link p-0 read-more-btn">Read More</button>
+                         </div>
+                    </div>
+                 </div>
+
+
+  
+                if (i == 2 || i == 5) 
+                {
+                    @:</div>
+                }
+
                 i++;
             }
         }
     </div>
     <button id="load-more" class="btn btn-primary">Load More</button>
 </div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
+
+
+@section Scripts {
+    <script src="~/js/read-more-button.js"></script>
+}
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>

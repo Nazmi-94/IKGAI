@@ -4,7 +4,7 @@ using IKGAI.Domain.Entities;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using IKGAI.Infrastructure;
+using IKGAI.Infrastructure.Data;
 
 namespace IKGAi.Controllers
 {
