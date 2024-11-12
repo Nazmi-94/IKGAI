@@ -1,5 +1,5 @@
 using IKGAI.Domain.Entities;
-using IKGAI.Infrastructure;
+using IKGAI.Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;

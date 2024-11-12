@@ -4,6 +4,7 @@ using IKGAI.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using IKGAI.Domain.Entities;
+using IKGAI.Infrastructure.Data;
 
 
 namespace IKGAi.Controllers
@@ -16,7 +17,14 @@ namespace IKGAi.Controllers
             _db = db;
         }
 
-        // GET: CommentController
+        //public async Task<ActionResult> Index();
+        //{
+        //    HttpClient client = new HttpClient("https://localhost:7108/api/CommentAPI");
+
+        //    var response = await client.GetAsync("")
+        //}
+
+        //GET: CommentController
         public ActionResult Index()
         {
             List<Comment> comments = new List<Comment>();

@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\IKGAI.BLL\IKGAI.BLL.csproj" />
     <ProjectReference Include="..\IKGAI.Domain\IKGAI.Domain.csproj" />
     <ProjectReference Include="..\IKGAI.Infrastructure\IKGAI.Infrastructure.csproj" />
   </ItemGroup>
