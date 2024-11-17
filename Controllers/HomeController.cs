@@ -39,8 +39,8 @@ namespace IKGAi.Controllers
                     .Select(comment => new
                     {
                         id = comment.Id,
-                        user = new { name = comment.User.name }, 
-                        commentText = comment.commentText
+                        user = new { name = comment.User.Name }, 
+                        commentText = comment.CommentText
                     })
                     .ToList();
 

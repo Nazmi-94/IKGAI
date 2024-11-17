@@ -71,13 +71,13 @@ namespace IKGAi.Controllers
         {
             try
             {
-                var existingProfile = _db.Profiles.Find(updatedProfile.profileId);
+                var existingProfile = _db.Profiles.Find(updatedProfile.Id);
                 if (existingProfile != null)
                 {
-                    existingProfile.experience = updatedProfile.experience;
-                    existingProfile.education = updatedProfile.education;
-                    existingProfile.skills = updatedProfile.skills;
-                    existingProfile.interests = updatedProfile.interests;
+                    existingProfile.Experience = updatedProfile.Experience;
+                    existingProfile.Education = updatedProfile.Education;
+                    existingProfile.Skills = updatedProfile.Skills;
+                    existingProfile.Interests = updatedProfile.Interests;
                 }    
                 return RedirectToAction(nameof(Index));
             }
