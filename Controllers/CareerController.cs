@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using IKGAI.Infrastructure.Data;
 
-namespace IKGAi.Controllers
+namespace IKGAI.Controllers
 {
     public class CareerController : Controller
     {
@@ -79,9 +79,9 @@ namespace IKGAi.Controllers
                 var existingCareer = _db.Career.Find(updatedCareer.Id);
                 if (existingCareer != null)
                 {
-                    existingCareer.careerName = updatedCareer.careerName;
-                    existingCareer.requirements = updatedCareer.requirements;
-                    existingCareer.description = updatedCareer.description;
+                    existingCareer.CareerName = updatedCareer.CareerName;
+                    existingCareer.Requirements = updatedCareer.Requirements;
+                    existingCareer.Description = updatedCareer.Description;
                     _db.SaveChanges();
                 }
                 else

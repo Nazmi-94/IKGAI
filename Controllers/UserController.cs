@@ -74,9 +74,9 @@ namespace IKGAi.Controllers
                 var existingUser = _db.User.Find(updatedUser.Id);
                 if (existingUser != null)
                 {
-                    existingUser.name = updatedUser.name;
-                    existingUser.email = updatedUser.email;
-                    existingUser.password = updatedUser.password;
+                    existingUser.Name = updatedUser.Name;
+                    existingUser.Email = updatedUser.Email;
+                    existingUser.Password = updatedUser.Password;
                     _db.SaveChanges();
                    
                 }

@@ -5,7 +5,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using IKGAI.Domain.Entities;
 using IKGAI.Infrastructure.Data;
-
+using Newtonsoft.Json;
+using IKGAI.Domain.Entities.IModels;
 
 namespace IKGAi.Controllers
 {
@@ -17,20 +18,33 @@ namespace IKGAi.Controllers
             _db = db;
         }
 
-        //public async Task<ActionResult> Index();
-        //{
-        //    HttpClient client = new HttpClient("https://localhost:7108/api/CommentAPI");
-
-        //    var response = await client.GetAsync("")
-        //}
-
-        //GET: CommentController
-        public ActionResult Index()
+        // GET: ProduktetController
+        public async Task<ActionResult> Index()
         {
-            List<Comment> comments = new List<Comment>();
-            comments = _db.Comment.ToList();
-            return View(comments);
+            HttpClient client = new HttpClient();
+
+            var response = await client.GetAsync("https://localhost:7108/api/CommentAPI");
+            if (response.IsSuccessStatusCode)
+            {
+                // Read the content as a string
+                var jsonString = await response.Content.ReadAsStringAsync();
+
+                // Deserialize the JSON string to a C# object
+                //var produktet = JsonSerializer.Deserialize<List<Produktet>>(jsonString);
+                // Or if using Newtonsoft.Json
+                var comment = JsonConvert.DeserializeObject<List<Comment>>(jsonString);
+
+                // Now you can work with the `produktet` object
+                return View(comment);
+            }
+            else
+            {
+                // Handle the error response
+                throw new Exception($"Error: {response.StatusCode}");
+            }
+
         }
+
 
         // GET: CommentController/Details/5
         public ActionResult Details(int id)
@@ -38,6 +52,7 @@ namespace IKGAi.Controllers
             //var commentDetails = _db.Comment.Include(x=> x.User).Where(x => x.Id == id).SingleOrDefault();
             ////var commentDe = db.Comment.Find(id);
             //return View(commentDetails);
+
             var commentDetails = _db.Comment.Include(x => x.User).Where(x => x.Id == id).SingleOrDefault();
             return PartialView("_DetailsPartial", commentDetails);  
         }
@@ -45,6 +60,7 @@ namespace IKGAi.Controllers
         // GET: CommentController/Create
         public ActionResult Create()
         {
+          
             var users = _db.User.ToList();
             var user_sel_list = new SelectList(users, "Id", "name");
             ViewBag.users = user_sel_list;
@@ -55,21 +71,47 @@ namespace IKGAi.Controllers
         // POST: CommentController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Comment newComment)
+        public async Task<ActionResult> CreateAsync(Comment newComment)
         {
             try
             {
+                using (HttpClient client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri("https://localhost:7108/");
 
-                _db.Comment.Add(newComment);
-                _db.SaveChanges();
+                    // Serialize newComment to JSON
+                    var content = new StringContent(
+                        Newtonsoft.Json.JsonConvert.SerializeObject(newComment),
+                        System.Text.Encoding.UTF8,
+                        "application/json"
+                    );
 
-                return Json(newComment);
+                    // Send POST request to the API
+                    var response = await client.PostAsync("api/CommentAPI/add-new", content);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // If API call is successful, save to local database
+                        _db.Comment.Add(newComment);
+                        await _db.SaveChangesAsync();
+
+                        // Return a JSON response with the new comment
+                        return Json(newComment);
+                    }
+                    else
+                    {
+                        // Log the error message or return a failure response
+                        return BadRequest("Failed to add the comment to the API.");
+                    }
+                }
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                // Handle exceptions (log exception details if necessary)
+                return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }
+
 
         //// GET: CommentController/Edit/5
         //public ActionResult Edit(int id)
@@ -116,9 +158,9 @@ namespace IKGAi.Controllers
                 return Json(new { success = false, message = "Comment not found." });
             }
 
-            existingComment.commentText = updatedComment.commentText;
-            existingComment.commentDate = updatedComment.commentDate;
-            existingComment.userId = updatedComment.userId;
+            existingComment.CommentText = updatedComment.CommentText;
+            existingComment.CommentDate = updatedComment.CommentDate;
+            existingComment.UserId = updatedComment.UserId;
 
             _db.SaveChanges();
 

@@ -18,7 +18,7 @@
     </form>
 </div> *@
 
-<form id="commentEditForm" method="post" action="@Url.Action("Edit", "Comment", new { id = Model.Id })">
+@* <form id="commentEditForm" method="post" action="@Url.Action("Edit", "Comment", new { id = Model.Id })">
     @Html.AntiForgeryToken()
     <div class="form-group">
         <input type="hidden" asp-for="Id" class="form-control" />
@@ -42,4 +42,4 @@
     <div class="form-group">
         <button type="button" onclick="submitEditForm()" class="btn btn-primary">Save changes</button>
     </div>
-</form>
+</form> *@
