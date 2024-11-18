@@ -1,7 +1,8 @@
 using IKGAI.BLL.Services;
+using IKGAI.BLL.Services.IServices;
 using IKGAI.Domain.Entities;
 using IKGAI.Domain.Interfaces.IRepository;
-using IKGAI.Domain.Interfaces.IServices;
+//using IKGAI.Domain.Interfaces.IServices;
 using IKGAI.Infrastructure;
 using IKGAI.Infrastructure.Data;
 using IKGAI.Infrastructure.Repositories;

@@ -7,23 +7,28 @@ using IKGAI.Domain.Entities;
 using IKGAI.Infrastructure.Data;
 using Newtonsoft.Json;
 using IKGAI.Domain.Entities.IModels;
+using IKGAI.BLL.Models.RequestModels;
+using System.Net.Http;
+using System.Text;
 
 namespace IKGAi.Controllers
 {
     public class CommentController : Controller
     {
         private static DB _db;
-        public CommentController(DB db)
+        private readonly HttpClient _httpClient;
+        public CommentController(DB db, HttpClient httpClient)
         {
             _db = db;
+            _httpClient = httpClient;
         }
 
         // GET: ProduktetController
         public async Task<ActionResult> Index()
         {
-            HttpClient client = new HttpClient();
+            //HttpClient client = new HttpClient();
 
-            var response = await client.GetAsync("https://localhost:7108/api/CommentAPI");
+            var response = await _httpClient.GetAsync("https://localhost:7108/api/CommentAPI");
             if (response.IsSuccessStatusCode)
             {
                 // Read the content as a string
@@ -68,49 +73,25 @@ namespace IKGAi.Controllers
             return PartialView("_CreatePartial");
         }
 
-        // POST: CommentController/Create
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> CreateAsync(Comment newComment)
+        public async Task<IActionResult> Create(CommentRequestModel commentRequestModel)
         {
-            try
-            {
-                using (HttpClient client = new HttpClient())
-                {
-                    client.BaseAddress = new Uri("https://localhost:7108/");
+            if (!ModelState.IsValid)
+                return View(commentRequestModel);
 
-                    // Serialize newComment to JSON
-                    var content = new StringContent(
-                        Newtonsoft.Json.JsonConvert.SerializeObject(newComment),
-                        System.Text.Encoding.UTF8,
-                        "application/json"
-                    );
+            var content = new StringContent(JsonSerializer.Serialize(commentRequestModel), Encoding.UTF8, "application/json");
 
-                    // Send POST request to the API
-                    var response = await client.PostAsync("api/CommentAPI/add-new", content);
+            var response = await _httpClient.PostAsync("api/CommentAPI/Create", content);
 
-                    if (response.IsSuccessStatusCode)
-                    {
-                        // If API call is successful, save to local database
-                        _db.Comment.Add(newComment);
-                        await _db.SaveChangesAsync();
+            if (response.IsSuccessStatusCode)
+                return RedirectToAction("Index"); // Redirect to a list of comments or another page
 
-                        // Return a JSON response with the new comment
-                        return Json(newComment);
-                    }
-                    else
-                    {
-                        // Log the error message or return a failure response
-                        return BadRequest("Failed to add the comment to the API.");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                // Handle exceptions (log exception details if necessary)
-                return StatusCode(500, $"Internal server error: {ex.Message}");
-            }
+            ModelState.AddModelError("", "An error occurred while creating the comment.");
+            return View(commentRequestModel);
         }
+
 
 
         //// GET: CommentController/Edit/5
