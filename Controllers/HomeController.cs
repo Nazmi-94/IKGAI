@@ -2,6 +2,7 @@ using IKGAI.Domain.Entities;
 using IKGAI.Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System.Diagnostics;
 
 namespace IKGAi.Controllers
@@ -21,12 +22,36 @@ namespace IKGAi.Controllers
         {
             return View(); // Returns the Login.cshtml as a full page view
         }
-        public IActionResult Index(int id)
+        public async Task<IActionResult> Index(int id)
         {
-            var lastComments = _db.Comment.Include(c=> c.User).Take(3).ToList();
-            return View(lastComments);
+            HttpClient client = new HttpClient();
 
+            var response = await client.GetAsync("https://localhost:7108/api/CommentAPI");
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonString = await response.Content.ReadAsStringAsync();
+
+               
+                // Deserialize the JSON string into a List<Comment>
+                List<Comment> comments;
+                try
+                {
+                    comments = JsonConvert.DeserializeObject<List<Comment>>(jsonString);
+                }
+                catch (Exception ex)
+                {
+                    comments = new List<Comment>(); // Initialize an empty list if deserialization fails
+                }
+
+                // Return the comments to the view
+                return View(comments);
+            }
+            else
+            {
+                throw new Exception($"Error: {response.StatusCode}");
+            }
         }
+
 
         [HttpGet]
         public IActionResult LoadMoreComments(int skip)
