@@ -1,215 +1,139 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using IKGAI.Infrastructure;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using IKGAI.Domain.Entities;
-using IKGAI.Infrastructure.Data;
-using Newtonsoft.Json;
-using IKGAI.Domain.Entities.IModels;
-using IKGAI.BLL.Models.RequestModels;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Text;
+using System.Text.Json;
+using Microsoft.AspNetCore.Mvc;
+using IKGAI.BLL.Models.DTO.Comment;
 
-namespace IKGAi.Controllers
+namespace IKGAI.Presentation.Controllers
 {
     public class CommentController : Controller
     {
-        private static DB _db;
         private readonly HttpClient _httpClient;
-        public CommentController(DB db, HttpClient httpClient)
+
+        public CommentController(HttpClient httpClient)
         {
-            _db = db;
             _httpClient = httpClient;
+            _httpClient.BaseAddress = new Uri("https://localhost:7121/api/CommentAPI/");
         }
 
-        // GET: ProduktetController
-        public async Task<ActionResult> Index()
+        // Get all comments
+        public async Task<IActionResult> Index()
         {
-            //HttpClient client = new HttpClient();
-
-            var response = await _httpClient.GetAsync("https://localhost:7108/api/CommentAPI");
+            var response = await _httpClient.GetAsync("");
             if (response.IsSuccessStatusCode)
             {
-                // Read the content as a string
-                var jsonString = await response.Content.ReadAsStringAsync();
+                var responseData = await response.Content.ReadAsStringAsync();
+                var comments = JsonSerializer.Deserialize<IEnumerable<CommentDto>>(responseData);
+                return View(comments);
+            }
+            return View(new List<CommentDto>()); // Handle errors gracefully
+        }
 
-                // Deserialize the JSON string to a C# object
-                //var produktet = JsonSerializer.Deserialize<List<Produktet>>(jsonString);
-                // Or if using Newtonsoft.Json
-                var comment = JsonConvert.DeserializeObject<List<Comment>>(jsonString);
-
-                // Now you can work with the `produktet` object
+        // View comment details
+        public async Task<IActionResult> Details(int id)
+        {
+            var response = await _httpClient.GetAsync($"{id}");
+            if (response.IsSuccessStatusCode)
+            {
+                var responseData = await response.Content.ReadAsStringAsync();
+                var comment = JsonSerializer.Deserialize<CommentDto>(responseData);
                 return View(comment);
             }
-            else
-            {
-                // Handle the error response
-                throw new Exception($"Error: {response.StatusCode}");
-            }
-
+            return NotFound();
         }
 
-
-        // GET: CommentController/Details/5
-        public ActionResult Details(int id)
+        // Create a new comment - GET
+        [HttpGet]
+        public IActionResult Create()
         {
-            //var commentDetails = _db.Comment.Include(x=> x.User).Where(x => x.Id == id).SingleOrDefault();
-            ////var commentDe = db.Comment.Find(id);
-            //return View(commentDetails);
-
-            var commentDetails = _db.Comment.Include(x => x.User).Where(x => x.Id == id).SingleOrDefault();
-            return PartialView("_DetailsPartial", commentDetails);  
+            return View();
         }
 
-        // GET: CommentController/Create
-        public ActionResult Create()
-        {
-          
-            var users = _db.User.ToList();
-            var user_sel_list = new SelectList(users, "Id", "name");
-            ViewBag.users = user_sel_list;
-           
-            return PartialView("_CreatePartial");
-        }
-
-
+        // Create a new comment - POST
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(CommentRequestModel commentRequestModel)
+        public async Task<IActionResult> Create(CreateCommentDto createCommentDto)
         {
             if (!ModelState.IsValid)
-                return View(commentRequestModel);
+            {
+                return View(createCommentDto);
+            }
 
-            var content = new StringContent(JsonSerializer.Serialize(commentRequestModel), Encoding.UTF8, "application/json");
+            var jsonData = JsonSerializer.Serialize(createCommentDto);
+            var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
-            var response = await _httpClient.PostAsync("api/CommentAPI/Create", content);
-
+            var response = await _httpClient.PostAsync("", content);
             if (response.IsSuccessStatusCode)
-                return RedirectToAction("Index"); // Redirect to a list of comments or another page
+            {
+                return RedirectToAction(nameof(Index));
+            }
 
+            // Handle error messages
             ModelState.AddModelError("", "An error occurred while creating the comment.");
-            return View(commentRequestModel);
+            return View(createCommentDto);
         }
 
-
-
-        //// GET: CommentController/Edit/5
-        //public ActionResult Edit(int id)
-        //{
-        //    //var comment = _db.Comment.Find(id);
-        //    //var users = _db.User.ToList();
-        //    //var user_sel_list = new SelectList(users, "Id", "name");
-        //    //ViewBag.users = user_sel_list;
-        //    //return View(comment);
-        //    var comment = _db.Comment.Find(id);
-        //    var users = _db.User.ToList();
-        //    var user_sel_list = new SelectList(users, "Id", "name");
-        //    ViewBag.users = user_sel_list;
-        //    return PartialView("_EditPartial", comment); 
-        //}
-
-
-        [HttpGet("api/comment/edit/{id}")]
-        public IActionResult GetCommentForEdit(int id)
+        // Edit an existing comment - GET
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
         {
-            var comment = _db.Comment.Find(id);
-            if (comment == null)
+            var response = await _httpClient.GetAsync($"{id}");
+            if (response.IsSuccessStatusCode)
             {
-                return NotFound();
+                var responseData = await response.Content.ReadAsStringAsync();
+                var comment = JsonSerializer.Deserialize<UpdateCommentDto>(responseData);
+                return View(comment);
             }
-
-            var users = _db.User.ToList();
-
-            return Json(new { comment, users });
+            return NotFound();
         }
 
-        public IActionResult RenderEditPartialView()
-        {
-            return PartialView("_EditPartial");
-        }
-
-        [HttpPost("api/comment/edit")]
-        public IActionResult SubmitEditComment([FromBody] Comment updatedComment)
-        {
-            var existingComment = _db.Comment.Find(updatedComment.Id);
-
-            if (existingComment == null)
-            {
-                return Json(new { success = false, message = "Comment not found." });
-            }
-
-            existingComment.CommentText = updatedComment.CommentText;
-            existingComment.CommentDate = updatedComment.CommentDate;
-            existingComment.UserId = updatedComment.UserId;
-
-            _db.SaveChanges();
-
-            return Json(new { success = true, updatedComment });
-        }
-        //// POST: CommentController/Edit/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit(Comment updatedCommnet)
-        //{
-        //    try
-        //    {
-        //        var existingComment = _db.Comment.Find(updatedCommnet.Id);
-        //        if (existingComment != null)
-        //        {
-        //            existingComment.commentText = updatedCommnet.commentText;
-        //            existingComment.commentDate = updatedCommnet.commentDate;
-        //            existingComment.userId = updatedCommnet.userId;
-        //            _db.SaveChanges();
-        //            return Json(updatedCommnet);  // Return the updated comment data
-        //        }
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return Json(new { success = false, message = "An error occurred" });
-        //    }
-        //}
-
-        // GET: CommentController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            //var comment = _db.Comment.Find(id);
-
-            //return View(comment);
-            var comment = _db.Comment.Find(id);
-            return PartialView("_DeletePartial", comment);  
-        }
-
-        // POST: CommentController/Delete/5
+        // Edit an existing comment - POST
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<IActionResult> Edit(UpdateCommentDto updateCommentDto)
         {
-            //try
-            //{
-            //    var commetD = _db.Comment.Find(id);
-            //    if (commetD != null)
-            //    {
-            //        _db.Comment.Remove(commetD);
-            //        _db.SaveChanges();
-            //    }    
-            //    return RedirectToAction(nameof(Index));
-            //}
-            //catch
-            //{
-            //    return View();
-            //}
-            var comment = _db.Comment.Find(id);
-            if (comment == null)
+            if (!ModelState.IsValid)
             {
-                return Json(new { success = false, message = "Comment not found." });
+                return View(updateCommentDto);
             }
 
-            _db.Comment.Remove(comment);
-            _db.SaveChanges();
+            var jsonData = JsonSerializer.Serialize(updateCommentDto);
+            var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
-            return Json(new { success = true, id = id });
+            var response = await _httpClient.PutAsync($"{updateCommentDto.Id}", content);
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            ModelState.AddModelError("", "An error occurred while updating the comment.");
+            return View(updateCommentDto);
+        }
+
+        // Delete a comment - GET (Confirmation View)
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var response = await _httpClient.GetAsync($"{id}");
+            if (response.IsSuccessStatusCode)
+            {
+                var responseData = await response.Content.ReadAsStringAsync();
+                var comment = JsonSerializer.Deserialize<CommentDto>(responseData);
+                return View(comment);
+            }
+            return NotFound();
+        }
+
+        // Delete a comment - POST
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var response = await _httpClient.DeleteAsync($"{id}");
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            ModelState.AddModelError("", "An error occurred while deleting the comment.");
+            return RedirectToAction(nameof(Index));
         }
     }
 }

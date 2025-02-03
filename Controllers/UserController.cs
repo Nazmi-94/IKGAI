@@ -1,118 +1,109 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using IKGAI.BLL.Models.DTO.User;
 using Microsoft.AspNetCore.Mvc;
-using IKGAI.Domain.Entities;
-using IKGAI.Infrastructure.Data;
+using Newtonsoft.Json;
+using System.Net.Http;
+using System.Text;
 
-
-namespace IKGAi.Controllers
+namespace IKGAI.MVC.Controllers
 {
     public class UserController : Controller
     {
-        private static DB _db;
+        private readonly HttpClient _httpClient;
 
-        public UserController(DB db)
+        public UserController(HttpClient httpClient)
         {
-            _db = db;
+            _httpClient = httpClient;
         }
 
         // GET: UserController
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            List<User> users = new List<User>(); 
-            users = _db.User.ToList();
-
-            return View(users);
+            // Fetch all users from the API
+            var response = await _httpClient.GetAsync("https://localhost:7121/api/Users");
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonString = await response.Content.ReadAsStringAsync();
+                var users = JsonConvert.DeserializeObject<List<UserDto>>(jsonString);
+                return View(users); // Pass the list to the view
+            }
+            else
+            {
+                return View(new List<UserDto>()); // Return an empty list in case of an error
+            }
         }
 
         // GET: UserController/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id)
         {
-            var userDetails = _db.User.Find(id);
-            return View(userDetails);
+            var response = await _httpClient.GetAsync($"https://localhost:7121/api/Users/{id}");
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonString = await response.Content.ReadAsStringAsync();
+                var user = JsonConvert.DeserializeObject<UserDto>(jsonString);
+                return View(user);
+            }
+            else
+            {
+                return NotFound(); // Handle user not found
+            }
         }
 
         // GET: UserController/Create
         public ActionResult Create()
         {
-            
-            return View();
+            return View(); // Render a form for creating a new user
         }
 
         // POST: UserController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(User newUser)
+        public async Task<ActionResult> Create(CreateUserDto createUserDto)
         {
-            try
-            {
+            if (!ModelState.IsValid)
+                return View(createUserDto);
 
-                _db.User.Add(newUser);
-                _db.SaveChanges();
+            var content = new StringContent(JsonConvert.SerializeObject(createUserDto), Encoding.UTF8, "application/json");
+            var response = await _httpClient.PostAsync("https://localhost:7121/api/Users", content);
 
-                return RedirectToAction(nameof(Index));
-            }
-            catch
+            if (response.IsSuccessStatusCode)
             {
-                return View();
+                return RedirectToAction(nameof(Index)); // Redirect to the user list
             }
-        }
 
-        // GET: UserController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            var userEdit = _db.User.Find(id);
-            return View(userEdit);
-        }
-
-        // POST: UserController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(User updatedUser)
-        {
-            try
-            {
-                var existingUser = _db.User.Find(updatedUser.Id);
-                if (existingUser != null)
-                {
-                    existingUser.Name = updatedUser.Name;
-                    existingUser.Email = updatedUser.Email;
-                    existingUser.Password = updatedUser.Password;
-                    _db.SaveChanges();
-                   
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            ModelState.AddModelError("", "An error occurred while creating the user.");
+            return View(createUserDto);
         }
 
         // GET: UserController/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            var userDelete = _db.User.Find(id);
-            return View(userDelete);
+            var response = await _httpClient.GetAsync($"https://localhost:7121/api/Users{id}");
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonString = await response.Content.ReadAsStringAsync();
+                var user = JsonConvert.DeserializeObject<UserDto>(jsonString);
+                return View(user); // Render a confirmation view
+            }
+            else
+            {
+                return NotFound();
+            }
         }
 
         // POST: UserController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<ActionResult> Delete(int id, IFormCollection collection)
         {
-            try
+            var response = await _httpClient.DeleteAsync($"https://localhost:7121/api/Users/{id}");
+            if (response.IsSuccessStatusCode)
             {
-                var userDelete = _db.User.Find(id); 
-                if (userDelete != null)
-                {
-                    _db.User.Remove(userDelete);
-                    _db.SaveChanges();  
-                }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index)); // Redirect to the user list
             }
-            catch
+            else
             {
-                return View();
+                ModelState.AddModelError("", "An error occurred while deleting the user.");
+                return RedirectToAction(nameof(Delete), new { id });
             }
         }
     }
