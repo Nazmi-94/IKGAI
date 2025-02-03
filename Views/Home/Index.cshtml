@@ -1,149 +1,108 @@
-﻿@model IEnumerable<Comment>
+﻿@model IEnumerable<IKGAI.BLL.Models.DTO.Comment.CommentDto>
 
-@* <div class="container">
+<h1>All Comments</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>User</th>
+            <th>Email</th>
+            <th>Comment</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var comment in Model)
+        {
+            <tr>
+                <td>@comment.Id</td>
+                <td>@comment.User?.Name ?? "Unknown User"</td>
+                <td>@comment.User?.Email ?? "No Email"</td>
+                <td>@comment.CommentText</td>
+                <td>@comment.CommentDate.ToString("yyyy-MM-dd")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="container">
     <div class="row" id="comments-section">
         @{
-            var i = 0;
-            foreach (var item in Model)
+            int count = 0;
+            foreach (var item in Model ?? Enumerable.Empty<IKGAI.BLL.Models.DTO.Comment.CommentDto>())
             {
-                if (i % 3 == 0 && i > 0) 
+                if (count % 3 == 0) // Start a new row every 3 comments
                 {
-                    @:<div class="row" style="padding-bottom: 20px;">
+                    @:<div class="row mb-3">
                 }
-                <div class="col-lg-4 col-md-6 col-sm-12 ">
-                    <div class="card border-primary mb-3 my-3">
+
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="card border-primary mb-3">
                         <div class="card-body">
-                            <h5 class="card-title">@item.User?.Name</h5>
-                            <p class="card-subtitle text-muted mb-2" id="Comment-@item.Id">@item.CommentDate</p>
-                            <p>@item.User.Email</p>
-                            <div class="mb-2">
-                                <span class="text-warning"><i class="fas fa-star"></i></span>
-                                <span class="text-warning"><i class="fas fa-star"></i></span>
-                                <span class="text-warning"><i class="fas fa-star"></i></span>
-                                <span class="text-warning"><i class="fas fa-star"></i></span>
-                                <span class="text-secondary"><i class="far fa-star"></i></span>
-                            </div>
-  
-                            <p class="card-text" id="comment-@item.Id">@item.CommentText</p>
+                            <h5 class="card-title">@item.User?.Name ?? "Unknown User"</h5>
+                            <p class="card-subtitle text-muted mb-2">@item.CommentDate.ToShortDateString()</p>
+                            <p>@item.User?.Email ?? "No Email"</p>
+                            <p class="card-text">@item.CommentText</p>
                             <button class="btn btn-link p-0 read-more-btn">Read More</button>
-                         </div>
+                        </div>
                     </div>
-                 </div>
+                </div>
 
-
-  
-                if (i == 2 || i == 5) 
+                if (count % 3 == 2) // Close row after 3 items
                 {
                     @:</div>
                 }
 
-                i++;
+                count++;
+            }
+
+            if (count % 3 != 0) // Close the last row if it wasn't closed
+            {
+                @:</div>
             }
         }
     </div>
-    <button id="load-more" class="btn btn-primary">Load More</button>
-</div> *@
 
-
-<div class="row pb-3 mt-4">
-    @foreach (var item in Model)
-    {
-        <div class="col-lg-4 col-sm-6">
-            <div class="row p-2">
-                <div class="col-12 p-1">
-                    <div class="card border-primary p-3 shadow  border rounded">
-                        <div class="card-body pb-0">
-                            <div>
-                                <p class="card-title h3 text-white opacity-75 text-center">@item.User.Name</p>
-                            </div>
-                            <div class="card-subtitle">
-                                <p class="h6 opacity-75 ">@item.CommentText</p>
-                            </div>
-                             <div class="mb-2">
-                                <span class="text-warning"><i class="fas fa-star"></i></span>
-                                <span class="text-warning"><i class="fas fa-star"></i></span>
-                                <span class="text-warning"><i class="fas fa-star"></i></span>
-                                <span class="text-warning"><i class="fas fa-star"></i></span>
-                                <span class="text-secondary"><i class="far fa-star"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    }
-
+    <button id="load-more" class="btn btn-primary" data-skip="0">Load More</button>
 </div>
 
-
-
 @section Scripts {
-    <script src="~/js/read-more-button.js"></script>
-}
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#load-more').click(function () {
+                var skip = $(this).data('skip') || 0;
 
-<script>
-$(document).ready(function () {
-    // Initialize skip variable based on the number of already loaded comments
-    var initialSkip = $('#comments-section #comments-loaded').length; // Count existing comment cards
-    $('#load-more').data('skip', initialSkip); // Set the initial skip value
+                $.ajax({
+                    url: '/Home/LoadMoreComments',
+                    type: 'GET',
+                    data: { skip: skip },
+                    success: function (response) {
+                        response.forEach(function (comment) {
+                            var newComment = `
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="card border-primary mb-3">
+                                        <div class="card-body">
+                                            <h5 class="card-title">${comment.user?.name ?? "Unknown User"}</h5>
+                                            <p class="card-subtitle text-muted mb-2">${comment.commentDate}</p>
+                                            <p>${comment.user?.email ?? "No Email"}</p>
+                                            <p class="card-text">${comment.commentText}</p>
+                                            <button class="btn btn-link p-0 read-more-btn">Read More</button>
+                                        </div>
+                                    </div>
+                                </div>`;
 
-    // Define the success handler function
-    function handleSuccess(response) {
-        var skip = $('#load-more').data('skip'); // Get the current skip value
+                            $('#comments-section .row:last').append(newComment);
+                        });
 
-        if (response.length > 0) {
-            // Loop through each new comment returned from the server
-            response.forEach(function (comment, index) {
-                // Check if we need to start a new row
-                if ((skip + index) % 3 === 0) {
-                    $('#comments-section').append('<div class="row" style="padding-bottom: 20px;"></div>');
-                }
-
-                // Dynamically create a new comment card
-                var newComment = `
-                    <div class="col-lg-4">
-                        <div class="card">
-                            <img src="/img/user.png" class="card-img-top rounded-image" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title text-dark">${comment.user.name}</h5>
-                                <p class="card-text text-dark">
-                                    <span class="comment-text" id="comment-${comment.id}">${comment.commentText}</span>
-                                    <a href="javascript:void(0);" class="read-more" id="read-more-${comment.id}" style="display: none;">Read More</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                `;
-
-                // Append the new comment to the last row
-                $('#comments-section .row:last').append(newComment);
+                        $('#load-more').data('skip', skip + response.length);
+                    },
+                    error: function () {
+                        alert('Failed to load comments.');
+                    }
+                });
             });
-
-            // Increment the skip value for the next batch of comments
-            $('#load-more').data('skip', skip + response.length);
-        } else {
-            // Optionally handle the case when there are no more comments
-            $('#load-more').hide(); // Hide button if no more comments to load
-        }
-    }
-
-    // Handle the "Load More" button click
-    $('#load-more').click(function () {
-        var skip = $(this).data('skip'); // Get the current skip value
-
-        // Perform AJAX request to load more comments
-        $.ajax({
-            url: '/Home/LoadMoreComments',
-            type: 'GET',
-            data: { skip: skip }, // Send current skip value to server
-            success: handleSuccess,  // Use the external success function
-            error: function () {
-                alert('An error occurred while loading more comments.');
-            }
         });
-    });
-});
-
-</script>
+    </script>
+}

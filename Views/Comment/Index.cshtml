@@ -1,4 +1,4 @@
-﻿@* @model IEnumerable<Comment>
+﻿@model IEnumerable<IKGAI.BLL.Models.DTO.Comment.CommentDto>
 
 @{
     ViewData["Title"] = "Index";
@@ -7,69 +7,41 @@
 
 <h1>Index</h1>
 
-
 <p>
     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#commentModal"
             onclick="loadModalContent('@Url.Action("Create", "Comment")', 'Create New Comment')">
         Create New
     </button>
-
 </p>
+
 <table id="commentsTable" class="table table-dark table-hover table-striped">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.userId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.commentText)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.commentDate)
-            </th>
-            <th></th>
-            <th></th>
-            <th></th>
+            <th>@Html.DisplayNameFor(model => model.Id)</th>
+            <th>User ID</th>
+            <th>@Html.DisplayNameFor(model => model.CommentText)</th>
+            <th>@Html.DisplayNameFor(model => model.CommentDate)</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
             <tr>
+                <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                <td>@Html.DisplayFor(modelItem => item.User.Id)</td>
+                <td>@Html.DisplayFor(modelItem => item.CommentText)</td>
+                <td>@Html.DisplayFor(modelItem => item.CommentDate)</td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.userId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.commentText)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.commentDate)
-                </td>
-
-                <td>
-                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#commentModal"
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#commentModal"
                             onclick="loadModalContent('@Url.Action("RenderEditPartialView", "Comment", new { id = item.Id })', 'Edit Comment')">
                         Edit
                     </button>
-                </td>
-
-                <!-- Details Button -->
-                <td>
-                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#commentModal"
+                    <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#commentModal"
                             onclick="loadModalContent('@Url.Action("Details", "Comment", new { id = item.Id })', 'Comment Details')">
                         Details
                     </button>
-                </td>
-
-                <!-- Delete Button -->
-                <td>
-                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#commentModal"
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#commentModal"
                             onclick="loadModalContent('@Url.Action("Delete", "Comment", new { id = item.Id })', 'Delete Comment')">
                         Delete
                     </button>
@@ -91,6 +63,7 @@
         </div>
     </div>
 </div>
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 @section Scripts {
@@ -186,4 +159,4 @@
                 });
             }
     </script>
-} *@
+}

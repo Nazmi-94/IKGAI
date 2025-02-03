@@ -1,7 +1,7 @@
+using AutoMapper;
+using IKGAI.BLL.Models.DTO.Comment;
 using IKGAI.Domain.Entities;
-using IKGAI.Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System.Diagnostics;
 
@@ -10,77 +10,47 @@ namespace IKGAi.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private static DB _db;
+        private readonly HttpClient _httpClient;
+        private readonly IMapper _mapper;
 
-        public HomeController(ILogger<HomeController> logger, DB db)
+        public HomeController(ILogger<HomeController> logger, IHttpClientFactory httpClientFactory, IMapper mapper)
         {
             _logger = logger;
-            _db = db;
+            _httpClient = httpClientFactory.CreateClient();
+            _httpClient.BaseAddress = new Uri("https://localhost:7121/");
+            _mapper = mapper;
         }
 
         public IActionResult Login()
         {
-            return View(); // Returns the Login.cshtml as a full page view
-        }
-        public async Task<IActionResult> Index(int id)
-        {
-            HttpClient client = new HttpClient();
-
-            var response = await client.GetAsync("https://localhost:7108/api/CommentAPI");
-            if (response.IsSuccessStatusCode)
-            {
-                var jsonString = await response.Content.ReadAsStringAsync();
-
-               
-                // Deserialize the JSON string into a List<Comment>
-                List<Comment> comments;
-                try
-                {
-                    comments = JsonConvert.DeserializeObject<List<Comment>>(jsonString);
-                }
-                catch (Exception ex)
-                {
-                    comments = new List<Comment>(); // Initialize an empty list if deserialization fails
-                }
-
-                // Return the comments to the view
-                return View(comments);
-            }
-            else
-            {
-                throw new Exception($"Error: {response.StatusCode}");
-            }
+            return View(); // Returns the Login.cshtml as a full-page view
         }
 
-
-        [HttpGet]
-        public IActionResult LoadMoreComments(int skip)
+        public async Task<IActionResult> Index()
         {
             try
             {
-                var moreComments = _db.Comment
-                    .Skip(skip)
-                    .Take(3)
-                    .Select(comment => new
-                    {
-                        id = comment.Id,
-                        user = new { name = comment.User.Name }, 
-                        commentText = comment.CommentText
-                    })
-                    .ToList();
+                // Call the API endpoint to get all comments
+                var response = await _httpClient.GetAsync("api/CommentAPI");
 
-                return Json(moreComments);
+                if (!response.IsSuccessStatusCode)
+                {
+                    _logger.LogError($"Failed to fetch comments. Status Code: {response.StatusCode}");
+                    return StatusCode((int)response.StatusCode, "Failed to load comments.");
+                }
+
+                var jsonString = await response.Content.ReadAsStringAsync();
+                var commentDtos = JsonConvert.DeserializeObject<List<CommentDto>>(jsonString);
+
+                // Pass the comments to the view
+                return View(commentDtos);
             }
             catch (Exception ex)
             {
-                // Log the exception (optional)
-                Console.WriteLine(ex.Message);
-                return StatusCode(500, "Internal server error");
+                _logger.LogError(ex, "An error occurred while fetching comments from the API.");
+                return StatusCode(500, "Internal server error.");
             }
         }
-
-
-        public IActionResult GetWeatherForecast;
 
 
         public IActionResult Privacy()

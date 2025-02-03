@@ -53,3 +53,29 @@
     </tbody>
 </table>
  *@
+
+ @model IEnumerable<IKGAI.BLL.Models.DTO.User.UserDto>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Id</td>
+                <td>@user.Name</td>
+                <td>@user.Email</td>
+                <td>
+                    <a href="@Url.Action("Details", "User", new { id = user.Id })" class="btn btn-info">Details</a>
+                    <a href="@Url.Action("Delete", "User", new { id = user.Id })" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
